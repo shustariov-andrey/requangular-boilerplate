@@ -7,13 +7,17 @@ require.config({
         "angular": {
             exports: "angular"
         }
+    },
+    map : {
+		'*' : {
+			domReady : 'libs/domReady',
+			text 	 : 'libs/text'
+		}
     }
 });
 
-require(['angular', './controllers/homeController'], function(angular, app) {
-	angular.element(document).ready(function() {
-		var html = document.getElementsByTagName('html')[0];
-		angular.bootstrap(html, [app.name]);
-	});
+require(['domReady!', 'angular', './controllers/homeController'], function(document, angular, app) {
+	var html = document.getElementsByTagName('html')[0];
+	angular.bootstrap(html, [app.name]);
 });
 
