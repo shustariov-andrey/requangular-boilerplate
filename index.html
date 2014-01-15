@@ -3,9 +3,12 @@
     <head>
     <meta charset="UTF-8" />
     <title>Angular.js</title>
-    <script type="text/javascript" data-main="js/main" src="js/libs/require.js"></script>
     </head>
     <body>
     <div ng-view></div>
+        <script type="text/javascript" data-main="js/main" src="js/libs/require.js"></script>
+    <script>
+		require(['myModule']);
+    </script>
     </body>
 </html>
