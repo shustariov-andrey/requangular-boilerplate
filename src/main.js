@@ -21,7 +21,14 @@ requirejs.config({
 	map : {
 		'*' : {
 			'less-builder' : 'bower_components/require-less/less-builder',
-			'normalize' : 'bower_components/require-less/normalize'
+			'normalize'    : 'bower_components/require-less/normalize',
+			'lessc'        : 'bower_components/require-less/lessc'
 		}
 	}
+});
+
+requirejs(['domReady!', 'angular', 'src/app/app', 'src/hello/module'], function(document, angular, app) {
+	'use strict';
+	
+	angular.bootstrap(document, [app.name]);
 });
