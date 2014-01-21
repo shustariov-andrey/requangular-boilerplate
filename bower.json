@@ -1,0 +1,26 @@
+{
+  "name": "angularjs-requirejs",
+  "version": "0.0.1",
+  "main": "index.html",
+  "authors": [
+    "Andrey Shustariov"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.10",
+    "requirejs-text": "~2.0.10",
+    "angular": "~1.2.9",
+    "angular-route": "~1.2.9",
+    "requirejs-domready": "~2.0.1",
+    "require-less": "~0.1.0",
+    "require-css": "~0.1.0"
+  }
+}

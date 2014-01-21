@@ -1,0 +1,25 @@
+{
+  "name": "angularjs-requirejs",
+  "version": "0.0.1",
+  "description": "Template for applications based on angularjs and requirejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angularjs",
+    "requirejs",
+    "template"
+  ],
+  "author": "Andrey Shustariov",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-preprocess": "~4.0.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt": "~0.4.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "csso": "~1.3.10",
+    "less": "~1.6.1"
+  }
+}

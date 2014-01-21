@@ -1,0 +1,4 @@
+<script src="main-built.js"></script>
+<script>
+	requirejs(['src/bootstrap']);
+</script>
