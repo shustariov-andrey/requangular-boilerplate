@@ -7,4 +7,12 @@ Warning!
 Works only via http!
 
 
-Execute node js/libs/r.js -o js/build.js to build application and be able to use index-prod.html
+Execute:
+
+npm install -g grunt-cli bower
+
+npm install
+bower install
+grunt
+
+Compiled code availabe at /out folder
