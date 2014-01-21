@@ -29,7 +29,7 @@ module.exports = function(grunt) {
             options : {
                waitSeconds : 0,
                baseUrl : ".",
-               name : 'src/bootstrap',
+               name : 'src/main',
                mainConfigFile : "src/main.js",
                out : "./out/main-built.js",
                optimize : "uglify2",
