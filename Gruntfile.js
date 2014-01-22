@@ -79,13 +79,13 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-watch');
 
    grunt.registerTask('verify', ['jshint']);
-   grunt.registerTask('compile', [
+   grunt.registerTask('build', [
       'verify', 'clean', 'requirejs:compile', 'preprocess:web'
    ]);
 
    // Default task.
    grunt.registerTask('default', [
-      'compile'
+      'watch'
    ]);
 
 };
