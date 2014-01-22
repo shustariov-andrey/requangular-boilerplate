@@ -2,10 +2,13 @@
   "name": "angularjs-requirejs",
   "version": "0.0.1",
   "description": "Template for applications based on angularjs and requirejs",
+  "repository" : {
+	"type" : "git",
+	"url" : "https://github.com/shustariov-andrey/angularjs-requirejs"
+  }
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "build" : "grunt build"
+    "test": "grunt build"
   },
   "keywords": [
     "angularjs",
