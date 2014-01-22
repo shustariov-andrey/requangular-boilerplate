@@ -55,6 +55,17 @@ module.exports = function(grunt) {
                'out/index.html'  : 'index.html'
             }
          }
+      },
+      watch : {
+		scripts : {
+			files : ['src/**', './Gruntfile.js'],
+			tasks : ['verify'],
+			options : {
+				spawn : true,
+				interrupt : true,
+				atBegin : true
+			}
+		}
       }
    };
 
@@ -65,9 +76,11 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-contrib-clean');
    grunt.loadNpmTasks('grunt-preprocess');
+   grunt.loadNpmTasks('grunt-contrib-watch');
 
+   grunt.registerTask('verify', ['jshint']);
    grunt.registerTask('compile', [
-      'jshint', 'clean', 'requirejs:compile', 'preprocess:web'
+      'verify', 'clean', 'requirejs:compile', 'preprocess:web'
    ]);
 
    // Default task.
