@@ -1,6 +1,8 @@
 angularjs-requirejs
 ===================
 
+![](https://api.travis-ci.org/shustariov-andrey/angularjs-requirejs.png?branch=master)
+
 ![](https://david-dm.org/shustariov-andrey/angularjs-requirejs.png)
 
 ![](https://david-dm.org/shustariov-andrey/angularjs-requirejs/dev-status.png)
