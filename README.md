@@ -1,6 +1,10 @@
 angularjs-requirejs
 ===================
 
+![](https://david-dm.org/shustariov-andrey/angularjs-requirejs.png)
+
+![](https://david-dm.org/shustariov-andrey/angularjs-requirejs/dev-status.png)
+
 Overview
 --------
 
