@@ -16,7 +16,7 @@
     "template"
   ],
   "author": "Andrey Shustariov",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "devDependencies": {
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-preprocess": "~4.0.0",
