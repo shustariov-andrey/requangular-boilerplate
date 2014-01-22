@@ -21,5 +21,4 @@ Execute:
 
 `grunt`
 
-
-Compiled code availabe at `/out` folder
+To build code, run: `grunt build`. Compiled code will be availabe at `/out` folder
