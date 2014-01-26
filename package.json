@@ -2,9 +2,9 @@
   "name": "angularjs-requirejs",
   "version": "0.0.1",
   "description": "Template for applications based on angularjs and requirejs",
-  "repository" : {
-	"type" : "git",
-	"url" : "https://github.com/shustariov-andrey/angularjs-requirejs"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shustariov-andrey/angularjs-requirejs"
   },
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "grunt-contrib-clean": "~0.5.0",
     "csso": "~1.3.10",
     "less": "~1.6.1",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-bower-task": "~0.3.4"
   }
 }
