@@ -66,6 +66,13 @@ module.exports = function(grunt) {
 				atBegin : true
 			}
 		}
+      },
+      bower: {
+         install: {
+            options : {
+               copy : false
+            }
+         }
       }
    };
 
@@ -77,10 +84,11 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-clean');
    grunt.loadNpmTasks('grunt-preprocess');
    grunt.loadNpmTasks('grunt-contrib-watch');
+   grunt.loadNpmTasks('grunt-bower-task');
 
    grunt.registerTask('verify', ['jshint']);
    grunt.registerTask('build', [
-      'verify', 'clean', 'requirejs:compile', 'preprocess:web'
+      'verify', 'bower:install', 'clean', 'requirejs:compile', 'preprocess:web'
    ]);
 
    // Default task.

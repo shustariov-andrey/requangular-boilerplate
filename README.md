@@ -19,12 +19,10 @@ Works only via http!
 
 Execute:
 
-`npm install -g grunt-cli bower`
+`npm install -g grunt-cli`
 
 `npm install`
 
-`bower install`
-
 `grunt`
 
-To build code, run: `grunt build`. Compiled code will be availabe at `/out` folder
+To build code (concatenate and minify), run: `grunt build`. Compiled version of application will be availabe at `/out` folder. Serve this folder via http, to access it
