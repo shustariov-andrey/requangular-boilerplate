@@ -1,7 +1,8 @@
 /* global module:false */
-module.exports = function(grunt) {
+module.exports = function(grunt){
    'use strict';
    var pkg = grunt.file.readJSON('package.json');
+   var sources = ['src/**/*.js', 'Gruntfile.js'];
    // Project configuration.
    var config = {
       // Metadata.
@@ -11,36 +12,39 @@ module.exports = function(grunt) {
             '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
             '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
             ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-      
       // Task configuration.
       jshint : {
-         jshintrc : '.jshintrc',
-         gruntfile : {
-            src : [
-               'src/**/*.js', 'Gruntfile.js'
-            ]
-         }
+         options : {
+            jshintrc : '.jshintrc'
+         },
+         all : sources
+      },
+      jscs : {
+         options : {
+            config : '.jscsrc'
+         },
+         src : sources
       },
       clean : [
-         "./out"
+         './out'
       ],
       requirejs : {
          compile : {
             options : {
                waitSeconds : 0,
-               baseUrl : ".",
+               baseUrl : '.',
                name : 'src/main',
-               mainConfigFile : "src/main.js",
-               out : "./out/main-built.js",
-               optimize : "uglify2",
-//               optimize : "none",
+               mainConfigFile : 'src/main.js',
+               out : './out/main-built.js',
+               optimize : 'uglify2',
+//               optimize : 'none',
                inlineText : true,
                findNestedDependencies : true,
                paths : {
-                  requireLib : "bower_components/requirejs/require",
+                  requireLib : 'bower_components/requirejs/require'
                },
                include : [
-                  "requireLib"
+                  'requireLib'
                ],
                exclude : [
                   'bower_components/require-css/normalize',
@@ -57,18 +61,18 @@ module.exports = function(grunt) {
          }
       },
       watch : {
-		scripts : {
-			files : ['src/**', './Gruntfile.js'],
-			tasks : ['verify'],
-			options : {
-				spawn : true,
-				interrupt : true,
-				atBegin : true
-			}
-		}
+         scripts : {
+            files : ['src/**', './Gruntfile.js'],
+            tasks : ['verify'],
+            options : {
+               spawn : true,
+               interrupt : true,
+               atBegin : true
+            }
+         }
       },
-      bower: {
-         install: {
+      bower : {
+         install : {
             options : {
                copy : false
             }
@@ -81,12 +85,13 @@ module.exports = function(grunt) {
    // These plugins provide necessary tasks.
    grunt.loadNpmTasks('grunt-contrib-requirejs');
    grunt.loadNpmTasks('grunt-contrib-jshint');
+   grunt.loadNpmTasks('grunt-jscs-checker');
    grunt.loadNpmTasks('grunt-contrib-clean');
    grunt.loadNpmTasks('grunt-preprocess');
    grunt.loadNpmTasks('grunt-contrib-watch');
    grunt.loadNpmTasks('grunt-bower-task');
 
-   grunt.registerTask('verify', ['jshint']);
+   grunt.registerTask('verify', ['jshint', 'jscs']);
    grunt.registerTask('build', [
       'verify', 'bower:install', 'clean', 'requirejs:compile', 'preprocess:web'
    ]);
