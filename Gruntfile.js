@@ -37,6 +37,8 @@ module.exports = function(grunt){
                mainConfigFile : 'src/main.js',
                out : './out/main-built.js',
                optimize : 'uglify2',
+               generateSourceMaps : true,
+               preserveLicenseComments : false,
 //               optimize : 'none',
                inlineText : true,
                findNestedDependencies : true,
