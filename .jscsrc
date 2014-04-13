@@ -22,15 +22,7 @@
 	    "catch"
 	],
 	"requireParenthesesAroundIIFE": true,
-	"disallowSpacesInFunctionExpression": {
-	    "beforeOpeningRoundBrace": true,
-	    "beforeOpeningCurlyBrace": true
-	},
-	"disallowSpacesInAnonymousFunctionExpression": {
-	    "beforeOpeningRoundBrace": true,
-	    "beforeOpeningCurlyBrace": true
-	},
-	"disallowSpacesInNamedFunctionExpression": {
+	"requireSpacesInFunctionDeclaration": {
 	    "beforeOpeningRoundBrace": true,
 	    "beforeOpeningCurlyBrace": true
 	},
@@ -40,7 +32,6 @@
 	"disallowSpacesInsideArrayBrackets": true,
 	"disallowSpacesInsideParentheses": true,
 	"disallowQuotedKeysInObjects": "allButReserved",
-	"disallowDanglingUnderscores": true,
 	"requireSpaceAfterObjectKeys": true,
 	"requireCommaBeforeLineBreak": true,
 	"requireOperatorBeforeLineBreak": [

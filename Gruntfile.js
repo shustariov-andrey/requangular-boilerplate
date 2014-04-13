@@ -2,7 +2,7 @@
 module.exports = function(grunt){
    'use strict';
    var pkg = grunt.file.readJSON('package.json');
-   var sources = ['src/**/*.js', 'Gruntfile.js'];
+   var sources = ['src/**/*.js', 'test/**/*.js', 'Gruntfile.js'];
    // Project configuration.
    var config = {
       // Metadata.
@@ -64,7 +64,7 @@ module.exports = function(grunt){
       },
       watch : {
          scripts : {
-            files : ['src/**', './Gruntfile.js'],
+            files : sources,
             tasks : ['verify', 'test'],
             options : {
                spawn : true,
@@ -80,9 +80,9 @@ module.exports = function(grunt){
             }
          }
       },
-      karma: {
-         unit: {
-            configFile: 'test/config/karma.conf.js'
+      karma : {
+         unit : {
+            configFile : 'test/config/karma.conf.js'
          }
       }
    };
@@ -99,7 +99,7 @@ module.exports = function(grunt){
    grunt.loadNpmTasks('grunt-bower-task');
    grunt.loadNpmTasks('grunt-karma');
 
-   grunt.registerTask('verify', ['jshint']);
+   grunt.registerTask('verify', ['jshint', 'jscs']);
    grunt.registerTask('test', ['karma:unit']);
    grunt.registerTask('build', [
       'bower:install', 'verify', 'test', 'clean', 'requirejs:compile', 'preprocess:web'

@@ -1,6 +1,6 @@
 define(['module', 'angular-mocks', 'src/hello/hello'], function(module, angular, hello) {
    'use strict';
-   
+
    /*global
    describe : false,
    beforeEach : false,
@@ -17,12 +17,12 @@ define(['module', 'angular-mocks', 'src/hello/hello'], function(module, angular,
          inject(function($injector) {
             $rootScope = $injector.get('$rootScope');
             var $controller = $injector.get('$controller');
-            
+
             $scope = $rootScope.$new();
 
             createController = function() {
                return $controller('HelloCtrl', {
-                  '$scope': $scope
+                  $scope : $scope
                });
             };
 
