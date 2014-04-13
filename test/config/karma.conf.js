@@ -19,13 +19,14 @@ module.exports = function(config) {
          {pattern : 'bower_components/**/*.js', included : false},
          {pattern : 'vendor/**/*.js',           included : false},
          {pattern : 'src/main.js',              included : true},
-         {pattern : 'src/**/*.js',              included : false},
+         {pattern : 'src/**/*.*',              included : false},
          {pattern : 'test/test-main.js',        included : true},
          {pattern : 'test/**/*.js',             included : false}
       ],
 
       // list of files to exclude
       exclude : [
+         'test/config/karmat.conf.js'
       ],
 
       // preprocess matching files before serving them to the browser
