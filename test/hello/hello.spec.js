@@ -1,4 +1,4 @@
-define(['module', 'angular-mocks', './hello'], function(module, angular, hello) {
+define(['module', 'angular-mocks', 'src/hello/hello'], function(module, angular, hello) {
    'use strict';
    
    /*global

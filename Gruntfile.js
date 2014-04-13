@@ -41,7 +41,7 @@ module.exports = function(grunt){
                preserveLicenseComments : false,
 //               optimize : 'none',
                inlineText : true,
-               findNestedDependencies : true,
+               findNestedDependencies : false,
                paths : {
                   requireLib : 'bower_components/requirejs/require'
                },
@@ -58,14 +58,14 @@ module.exports = function(grunt){
       preprocess : {
          web : {
             files : {
-               'out/index.html'  : 'index.html'
+               'out/index.html'  : 'src/index.html'
             }
          }
       },
       watch : {
          scripts : {
             files : ['src/**', './Gruntfile.js'],
-            tasks : ['verify'],
+            tasks : ['verify', 'test'],
             options : {
                spawn : true,
                interrupt : true,
@@ -82,7 +82,7 @@ module.exports = function(grunt){
       },
       karma: {
          unit: {
-            configFile: 'config/karma.conf.js'
+            configFile: 'test/config/karma.conf.js'
          }
       }
    };

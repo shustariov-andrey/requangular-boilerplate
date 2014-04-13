@@ -1,5 +1,5 @@
 define([
-   './hello.js',
+   './hello',
    'text!./hello.tpl.html',
    'less!./hello.less'
 ], function(hello, template){
