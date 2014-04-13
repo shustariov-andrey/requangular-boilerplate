@@ -25,4 +25,6 @@ Execute:
 
 `grunt`
 
-To build code (concatenate and minify), run: `grunt build`. Compiled version of application will be availabe at `/out` folder. Serve this folder via http, to access it
+To build code (lint, test, concatenate and minify), run: `grunt build`. Compiled version of application will be availabe at `/out` folder. Serve this folder via http, to access it
+
+In development mode, use grunt (alias to grunt watch), to allow grunt automatically watch changes ant run linters and tests.
