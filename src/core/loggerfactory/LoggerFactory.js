@@ -1,11 +1,6 @@
 define(['moment', './supplant'], function(moment, supplant) {
    'use strict';
 
-   function initDefaultLogWriter () {
-      logWriter = window.console.log;
-      logWriterContext = window.console;
-   }
-
    var LogLevel = {
       ALL   : {value : Number.MAX_VALUE, label : 'TRACE'},
       TRACE : {value : 400000,           label : 'TRACE'},
@@ -15,7 +10,7 @@ define(['moment', './supplant'], function(moment, supplant) {
       ERROR : {value : Number.MIN_VALUE, label : 'ERROR'}
    };
 
-   var logWriter, logWriterContext, logLevel = LogLevel.ERROR;
+   var logWriter = window.console.log, logWriterContext = window.console, logLevel = LogLevel.ERROR;
 
    /**
     * Partial application to pre-capture a logger function
@@ -52,9 +47,6 @@ define(['moment', './supplant'], function(moment, supplant) {
     * @returns Object wrapper facade to $log
     */
    function getInstance (module) {
-      if (!logWriter) {
-         initDefaultLogWriter();
-      }
       module = (module) ? module.replace(/\//g, '.') : '';
 
       return {
