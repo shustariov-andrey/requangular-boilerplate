@@ -33,7 +33,7 @@ module.exports = function(grunt){
             options : {
                waitSeconds : 0,
                baseUrl : '.',
-               name : 'src/main',
+               name : 'src/bootstrap',
                mainConfigFile : 'src/main.js',
                out : './out/main-built.js',
                optimize : 'uglify2',

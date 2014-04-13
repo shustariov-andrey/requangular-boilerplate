@@ -18,14 +18,14 @@ module.exports = function(config) {
       files : [
          {pattern : 'bower_components/**/*.js', included : false},
          {pattern : 'vendor/**/*.js',           included : false},
+         {pattern : 'src/main.js',              included : true},
          {pattern : 'src/**/*.js',              included : false},
          {pattern : 'test/test-main.js',        included : true},
-         {pattern : 'test/**/*.js',             included : false},
+         {pattern : 'test/**/*.js',             included : false}
       ],
 
       // list of files to exclude
       exclude : [
-         'src/main.js'
       ],
 
       // preprocess matching files before serving them to the browser
