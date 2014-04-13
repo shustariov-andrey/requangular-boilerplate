@@ -75,7 +75,11 @@ module.exports = function(grunt){
       },
       karma : {
          unit : {
-            configFile : 'test/config/karma.conf.js'
+            configFile : 'test/config/karma.conf.js',
+            options : {
+               singleRun : true,
+               browsers : ['PhantomJS']
+            }
          }
       }
    };

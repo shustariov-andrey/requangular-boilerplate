@@ -19,7 +19,7 @@ module.exports = function(config) {
          {pattern : 'bower_components/**/*.js', included : false},
          {pattern : 'vendor/**/*.js',           included : false},
          {pattern : 'src/main.js',              included : true},
-         {pattern : 'src/**/*.*',              included : false},
+         {pattern : 'src/**/*.*',               included : false},
          {pattern : 'test/test-main.js',        included : true},
          {pattern : 'test/**/*.js',             included : false}
       ],
@@ -52,14 +52,14 @@ module.exports = function(config) {
 
       // enable / disable watching file and executing tests whenever any file changes
       // will be triggered via grunt watch
-      autoWatch : false,
+      autoWatch : true,
 
       // start these browsers
       // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-      browsers : ['PhantomJS'],
+      browsers : ['PhantomJS', 'Chrome'],
 
       // Continuous Integration mode
       // if true, Karma captures browsers, runs the tests and exits
-      singleRun : true
+      singleRun : false
    });
 };

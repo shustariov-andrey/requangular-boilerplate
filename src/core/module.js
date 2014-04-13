@@ -1,0 +1,4 @@
+define([
+   './loggerfactory/module'
+], function () {
+});

@@ -1,0 +1,4 @@
+define([
+   './hello/module'
+], function() {
+});

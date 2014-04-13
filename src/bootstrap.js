@@ -1,4 +1,10 @@
-requirejs(['domReady!', 'angular', 'src/app/app', 'src/hello/module'], function(document, angular, app){
+requirejs([
+   'domReady!',
+   'angular',
+   'src/ngModule',
+   'src/core/module',
+   'src/components/module'
+], function(document, angular, app){
    'use strict';
    angular.bootstrap(document, [app.name]);
 });

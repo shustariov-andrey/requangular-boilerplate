@@ -3,6 +3,8 @@ requirejs.config({
    paths : {
       angular         : 'bower_components/angular/angular',
       'angular-route' : 'bower_components/angular-route/angular-route',
+      moment          : 'bower_components/momentjs/moment',
+
       domReady        : 'bower_components/requirejs-domready/domReady',
       text            : 'bower_components/requirejs-text/text',
       css             : 'bower_components/require-css/css',
@@ -21,7 +23,12 @@ requirejs.config({
       '*' : {
          'less-builder' : 'bower_components/require-less/less-builder',
          normalize      : 'bower_components/require-less/normalize',
-         lessc          : 'bower_components/require-less/lessc'
+         lessc          : 'bower_components/require-less/lessc',
+
+         LoggerFactory  : 'src/core/loggerfactory/module'
       }
+   },
+   less : {
+      logLevel : 1
    }
 });
