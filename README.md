@@ -19,7 +19,7 @@ Works only via http!
 
 Execute:
 
-`npm install -g grunt-cli karma bower`
+`npm install -g grunt-cli bower`
 
 `npm install`
 
