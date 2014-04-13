@@ -4,6 +4,7 @@
 /*jshint node : true*/
 module.exports = function(config) {
    'use strict';
+
    config.set({
 
       // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -49,7 +50,8 @@ module.exports = function(config) {
       logLevel : config.LOG_INFO,
 
       // enable / disable watching file and executing tests whenever any file changes
-      autoWatch : true,
+      // will be triggered via grunt watch
+      autoWatch : false,
 
       // start these browsers
       // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher

@@ -19,11 +19,11 @@ Works only via http!
 
 Execute:
 
-`npm install -g grunt-cli`
+`npm install -g grunt-cli karma bower`
 
 `npm install`
 
-`grunt`
+`grunt build`
 
 To build code (lint, test, concatenate and minify), run: `grunt build`. Compiled version of application will be availabe at `/out` folder. Serve this folder via http, to access it
 
