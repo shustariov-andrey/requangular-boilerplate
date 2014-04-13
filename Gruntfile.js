@@ -73,13 +73,6 @@ module.exports = function(grunt){
             }
          }
       },
-      bower : {
-         install : {
-            options : {
-               copy : false
-            }
-         }
-      },
       karma : {
          unit : {
             configFile : 'test/config/karma.conf.js'
@@ -96,13 +89,12 @@ module.exports = function(grunt){
    grunt.loadNpmTasks('grunt-contrib-clean');
    grunt.loadNpmTasks('grunt-preprocess');
    grunt.loadNpmTasks('grunt-contrib-watch');
-   grunt.loadNpmTasks('grunt-bower-task');
    grunt.loadNpmTasks('grunt-karma');
 
    grunt.registerTask('verify', ['jshint', 'jscs']);
    grunt.registerTask('test', ['karma:unit']);
    grunt.registerTask('build', [
-      'bower:install', 'verify', 'test', 'clean', 'requirejs:compile', 'preprocess:web'
+      'verify', 'test', 'clean', 'requirejs:compile', 'preprocess:web'
    ]);
 
    // Default task.
