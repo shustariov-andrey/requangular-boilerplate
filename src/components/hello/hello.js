@@ -1,4 +1,4 @@
-define(['module', 'src/ngModule', 'LoggerFactory'], function(module, ngModule, LoggerFactory){
+define(['module', 'src/ngModule'], function(module, ngModule){
    'use strict';
 
    return ngModule.controller('HelloCtrl', ['$scope', function($scope){

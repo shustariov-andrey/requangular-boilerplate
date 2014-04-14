@@ -18,7 +18,7 @@ define(function() {
    'use strict';
    // supplant() method from Crockfords `Remedial Javascript`
 
-   var supplant = function(template, values, pattern) {
+   return function(template, values, pattern) {
       pattern = pattern || /\{([^\{\}]*)\}/g;
 
       values = values || [];
@@ -47,18 +47,5 @@ define(function() {
          return (typeof r === 'string' || typeof r === 'number') ? r : a;
       });
    };
-
-   // supplant() method from Crockfords `Remedial Javascript`
-   Function.prototype.method = function(name, func) {
-      this.prototype[name] = func;
-      return this;
-   };
-
-   String.method('supplant', function(values, pattern) {
-      return supplant(this, values, pattern);
-   });
-
-   // Publish this global function...
-   return supplant;
 
 });
