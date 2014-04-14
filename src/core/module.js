@@ -1,4 +1,5 @@
 define([
-   './loggerfactory/module'
+   './loggerfactory/module',
+   './servicefactory/module'
 ], function () {
 });

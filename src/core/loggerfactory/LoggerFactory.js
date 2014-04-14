@@ -15,7 +15,7 @@ define(['moment', './supplant'], function(moment, supplant) {
    /**
     * Partial application to pre-capture a logger function
     */
-   function prepareLogFn (logFn, className, level) {
+   function prepareLogFn (logWriter, className, level) {
       /**
        * Invoke the specified `logFn` with the supplant
        * functionality...
@@ -66,10 +66,11 @@ define(['moment', './supplant'], function(moment, supplant) {
          logWriterContext = options.logWriterContext;
       }
       if ('logLevel' in options) {
-         logLevel = LogLevel[options.logLevel];
-         if (!logLevel) {
+         var newLogLevel = LogLevel[options.logLevel];
+         if (!newLogLevel) {
             throw new Error('Unknown logLevel: "' + options.logLevel + '"');
          }
+         logLevel = newLogLevel;
       }
    }
 

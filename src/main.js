@@ -4,6 +4,7 @@ requirejs.config({
       angular         : 'bower_components/angular/angular',
       'angular-route' : 'bower_components/angular-route/angular-route',
       moment          : 'bower_components/momentjs/moment',
+      lodash          : 'bower_components/lodash/dist/lodash',
 
       domReady        : 'bower_components/requirejs-domready/domReady',
       text            : 'bower_components/requirejs-text/text',
@@ -17,6 +18,9 @@ requirejs.config({
       'angular-route' : {
          exports : 'angular',
          deps    : ['angular']
+      },
+      lodash : {
+         exports : '_'
       }
    },
    map : {
@@ -25,7 +29,8 @@ requirejs.config({
          normalize      : 'bower_components/require-less/normalize',
          lessc          : 'bower_components/require-less/lessc',
 
-         LoggerFactory  : 'src/core/loggerfactory/module'
+         LoggerFactory  : 'src/core/loggerfactory/module',
+         ServiceFactory : 'src/core/servicefactory/module'
       }
    },
    less : {
