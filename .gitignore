@@ -1,7 +1,3 @@
 /out
 /bower_components
 /node_modules
-.settings
-.project
-.externalToolBuilders
-/.idea
