@@ -23,7 +23,7 @@ define(function() {
       function enhancedLogFn () {
          var args = Array.prototype.slice.call(arguments);
          var date = new Date();
-         var now = date.toTimeString().match(/\d{2}:\d{2}:\d{2}/)[0] + ':' + date.getMilliseconds();
+         var now = date.toTimeString().match(/\d{2}:\d{2}:\d{2}/)[0] + ':' + ('000' + date.getMilliseconds()).slice(-3);
          var argsJoined = args.join('\n\t');
 
          var logArg = now + ' [' + level.label + '] - [' + className + '] - ' + argsJoined;
