@@ -3,10 +3,12 @@ module.exports = function(grunt){
    'use strict';
    var pkg = grunt.file.readJSON('package.json');
    var sources = ['src/**/*.js', 'test/**/*.js', 'Gruntfile.js'];
+   var destinationFolder = './out';
    // Project configuration.
    var config = {
       // Metadata.
       pkg : pkg,
+      destinationFolder : destinationFolder,
       // Task configuration.
       jshint : {
          options : {
@@ -15,7 +17,7 @@ module.exports = function(grunt){
          all : sources
       },
       clean : [
-         './out'
+         '<%= destinationFolder %>'
       ],
       requirejs : {
          compile : {
@@ -24,7 +26,7 @@ module.exports = function(grunt){
                baseUrl : '.',
                name : 'src/bootstrap',
                mainConfigFile : 'src/main.js',
-               out : './out/main-built.js',
+               out : '<%= destinationFolder %>/main-built.js',
                optimize : 'uglify2',
                generateSourceMaps : true,
                preserveLicenseComments : false,
@@ -46,9 +48,11 @@ module.exports = function(grunt){
       },
       preprocess : {
          web : {
-            files : {
-               'out/index.html'  : 'src/index.html'
-            }
+//            files : {
+//               'out/index.html'  : 'src/index.html'
+//            }
+            src : 'src/index.html',
+            dest : '<%= destinationFolder %>/index.html'
          }
       },
       watch : {
