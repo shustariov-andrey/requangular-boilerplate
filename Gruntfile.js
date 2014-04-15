@@ -7,23 +7,12 @@ module.exports = function(grunt){
    var config = {
       // Metadata.
       pkg : pkg,
-      banner : '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-            '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-            '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-            '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-            ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
       // Task configuration.
       jshint : {
          options : {
             jshintrc : '.jshintrc'
          },
          all : sources
-      },
-      jscs : {
-         options : {
-            config : '.jscsrc'
-         },
-         src : sources
       },
       clean : [
          './out'
@@ -89,13 +78,12 @@ module.exports = function(grunt){
    // These plugins provide necessary tasks.
    grunt.loadNpmTasks('grunt-contrib-requirejs');
    grunt.loadNpmTasks('grunt-contrib-jshint');
-   grunt.loadNpmTasks('grunt-jscs-checker');
    grunt.loadNpmTasks('grunt-contrib-clean');
    grunt.loadNpmTasks('grunt-preprocess');
    grunt.loadNpmTasks('grunt-contrib-watch');
    grunt.loadNpmTasks('grunt-karma');
 
-   grunt.registerTask('verify', ['jshint', 'jscs']);
+   grunt.registerTask('verify', ['jshint']);
    grunt.registerTask('test', ['karma:unit']);
    grunt.registerTask('build', [
       'verify', 'test', 'clean', 'requirejs:compile', 'preprocess:web'

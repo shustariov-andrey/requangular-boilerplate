@@ -1,4 +1,4 @@
-define(['moment', './supplant'], function(moment, supplant) {
+define(['moment'], function(moment) {
    'use strict';
 
    var LogLevel = {
@@ -26,11 +26,7 @@ define(['moment', './supplant'], function(moment, supplant) {
 
          var argsJoined = args.join('\n\t');
 
-         // prepend a timestamp and optional classname to the original
-         // output message
-         var logArg = supplant('{0} [{1}] - [{2}] - {3}', [
-            now, level.label, className, argsJoined
-         ]);
+         var logArg = now + ' [' + level.label + '] - [' + className + '] - ' + argsJoined;
 
          return level.value <= logLevel.value ? logWriter.call(logWriterContext, logArg) : undefined;
       }
