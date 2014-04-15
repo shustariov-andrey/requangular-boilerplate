@@ -1,4 +1,4 @@
-define(['moment'], function(moment) {
+define(function() {
    'use strict';
 
    var LogLevel = {
@@ -22,8 +22,8 @@ define(['moment'], function(moment) {
        */
       function enhancedLogFn () {
          var args = Array.prototype.slice.call(arguments);
-         var now = moment().format('HH:mm:ss:SSS');
-
+         var date = new Date();
+         var now = date.toTimeString().match(/\d{2}:\d{2}:\d{2}/)[0] + ':' + date.getMilliseconds();
          var argsJoined = args.join('\n\t');
 
          var logArg = now + ' [' + level.label + '] - [' + className + '] - ' + argsJoined;
