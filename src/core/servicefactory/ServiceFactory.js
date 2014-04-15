@@ -5,6 +5,9 @@ define(['module', 'LoggerFactory', 'src/ngModule', 'lodash'], function(module, L
 
    return {
       register : function(moduleName, serviceArray) {
+         if (!(serviceArray instanceof Array)) {
+            throw new Error('Service function must be provided in array form');
+         }
          moduleName = moduleName.replace(/\//g, '.');
          var serviceName = _.last(moduleName.split('.'));
          logger.debug('Creating service [' + moduleName + ']');

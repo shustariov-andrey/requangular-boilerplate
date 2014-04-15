@@ -4,16 +4,18 @@ define(['module', 'angular-mocks', 'ServiceFactory'], function(module, angular, 
 
    describe(module.id, function() {
 
-      beforeEach(function() {
-         ServiceFactory.register('test_service', [function() {
-            this.testMethod = function() {
-               return 'test';
-            };
-         }]);
-      });
+      var testService = function() {
+         this.testMethod = function() {
+            return 'test';
+         };
+      };
+
+      function registerTestService (service) {
+         ServiceFactory.register('test_service', service);
+      }
 
       it('should register angular services', function() {
-
+         registerTestService([testService]);
          var $injector =  angular.injector(['ngModule']);
          var service = $injector.get('test_service');
 
@@ -23,10 +25,18 @@ define(['module', 'angular-mocks', 'ServiceFactory'], function(module, angular, 
       });
 
       it('should inject logger into services', function() {
+         registerTestService([testService]);
          var $injector =  angular.injector(['ngModule']);
          var service = $injector.get('test_service');
 
          expect(service.logger).toBeDefined();
+      });
+
+      it('should fail, when service is not in array format', function() {
+         function f () {
+            registerTestService(testService);
+         }
+         expect(f).toThrow();
       });
    });
 });
