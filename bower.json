@@ -1,19 +1,11 @@
 {
   "name": "angularjs-requirejs",
   "version": "0.1.0",
-  "main": "index.html",
+  "main": "src/index.html",
   "authors": [
     "Andrey Shustariov"
   ],
   "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "requirejs": "~2.1.11",
     "requirejs-text": "~2.0.10",
