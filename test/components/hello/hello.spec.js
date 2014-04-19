@@ -1,7 +1,8 @@
 define([
    'module',
    'angular-mocks',
-   'src/components/hello/hello'
+   'src/components/hello/hello',
+   'src/services/helloworld/module'
 ], function(module, angular) {
    'use strict';
 
