@@ -1,23 +1,23 @@
-define(['module', 'src/core/loggerfactory/module'], function(module, LoggerFactory) {
+define([
+   'module',
+   'src/core/loggerfactory/LoggerFactory',
+   'src/core/loggerfactory/LogLevel'
+], function(module, LoggerFactory, LogLevel) {
    'use strict';
    /*global describe : false, beforeEach : false, inject : false, it : false, expect : false*/
 
    describe(module.id, function() {
       var loggerInstance;
 
-      var testLogWriter = function(message) {
-         return message;
+      var testLogWriter = {
+         write : function(logLevel, message) {
+            return message;
+         }
       };
 
-      it('should print formatted log message', function() {
-         LoggerFactory.init({logWriter : testLogWriter});
-         loggerInstance = LoggerFactory.getInstance('test/module');
-         var result = loggerInstance.error('test_message');
-         expect(result).toMatch(/^\d{2}:\d{2}:\d{2}:\d{3}\s\[.{5}\]\s-\s\[test\.module\]\s-\stest_message$/);
-      });
-
       it('should consider log level', function() {
-         LoggerFactory.init({logWriter : testLogWriter, logLevel : 'INFO'});
+         LoggerFactory.setLogLevel(LogLevel.INFO);
+         LoggerFactory.setLogWriter(testLogWriter);
          loggerInstance = LoggerFactory.getInstance('test/module');
          var result = loggerInstance.info('test_message');
          expect(result).toBeDefined();
@@ -27,11 +27,17 @@ define(['module', 'src/core/loggerfactory/module'], function(module, LoggerFacto
          expect(result).toBeDefined();
       });
 
-      it('should check log level for existance', function() {
-         function f () {
-            LoggerFactory.init({logWriter : testLogWriter, logLevel : 'UNKNOWN'});
-         }
-         expect(f).toThrow();
+      it('should allow custom log message formatting', function() {
+         LoggerFactory.setLogLevel(LogLevel.INFO);
+         LoggerFactory.setLogWriter(testLogWriter);
+         LoggerFactory.setLogFormatter({
+            format : function(message, logLevel, componentName) {
+               return logLevel.label + 'II' + componentName + 'II' + message;
+            }
+         });
+         loggerInstance = LoggerFactory.getInstance('test/module');
+         var result = loggerInstance.info('test_message');
+         expect(result).toMatch(/^INFO\sIItest\.moduleIItest_message$/);
       });
    });
 });

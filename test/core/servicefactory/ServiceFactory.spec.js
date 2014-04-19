@@ -1,4 +1,8 @@
-define(['module', 'angular-mocks', 'ServiceFactory'], function(module, angular, ServiceFactory) {
+define([
+   'module',
+   'angular-mocks',
+   'src/core/servicefactory/ServiceFactory'
+], function(module, angular, ServiceFactory) {
    'use strict';
    /*global describe : false, beforeEach : false, inject : false, it : false, expect : false*/
 

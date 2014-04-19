@@ -1,4 +1,4 @@
-define(['module', 'LoggerFactory', 'src/ngModule', 'lodash'], function(module, LoggerFactory, ngModule, _) {
+define(['module', 'src/core/loggerfactory/LoggerFactory', 'src/ngModule', 'lodash'], function(module, LoggerFactory, ngModule, _) {
    'use strict';
 
    var logger = LoggerFactory.getInstance(module.id);

@@ -1,16 +1,7 @@
-define(function() {
+define(['./LogLevel', './ConsoleLogWriter', './DefaultLogFormatter'], function(LogLevel, DefaultLogWriter, DefaultLogFormatter) {
    'use strict';
 
-   var LogLevel = {
-      ALL   : {value : Number.MAX_VALUE, label : 'TRACE'},
-      TRACE : {value : 400000,           label : 'TRACE'},
-      DEBUG : {value : 300000,           label : 'DEBUG'},
-      INFO  : {value : 200000,           label : 'INFO '},
-      WARN  : {value : 100000,           label : 'WARN '},
-      ERROR : {value : Number.MIN_VALUE, label : 'ERROR'}
-   };
-
-   var logWriter = window.console.log, logWriterContext = window.console, logLevel = LogLevel.ERROR;
+   var logWriter = DefaultLogWriter, logFormatter = DefaultLogFormatter, logLevel = LogLevel.ERROR;
 
    /**
     * Partial application to pre-capture a logger function
@@ -22,16 +13,13 @@ define(function() {
        */
       function enhancedLogFn () {
          var args = Array.prototype.slice.call(arguments);
-         var date = new Date();
-         var now = date.toTimeString().match(/\d{2}:\d{2}:\d{2}/)[0] + ':' + ('000' + date.getMilliseconds()).slice(-3);
          var argsJoined = args.join('\n\t');
+         var message = logFormatter.format(argsJoined, level, className);
 
-         var logArg = now + ' [' + level.label + '] - [' + className + '] - ' + argsJoined;
-
-         return level.value <= logLevel.value ? logWriter.call(logWriterContext, logArg) : undefined;
+         return logWriter.write(logLevel, message);
       }
 
-      return enhancedLogFn;
+      return level.value <= logLevel.value ? enhancedLogFn : function(){};
    }
 
    /**
@@ -54,24 +42,21 @@ define(function() {
       };
    }
 
-   function init (options) {
-      if ('logWriter' in options) {
-         logWriter = options.logWriter;
-      }
-      if ('logWriterContext' in options) {
-         logWriterContext = options.logWriterContext;
-      }
-      if ('logLevel' in options) {
-         var newLogLevel = LogLevel[options.logLevel];
-         if (!newLogLevel) {
-            throw new Error('Unknown logLevel: "' + options.logLevel + '"');
-         }
-         logLevel = newLogLevel;
-      }
-   }
-
    return {
       getInstance : getInstance,
-      init : init
+      setLogWriter : function(_logWriter) {
+         logWriter = _logWriter;
+      },
+      /**
+       *
+       * @param {LogLevel} _logLevel
+       */
+      setLogLevel : function(_logLevel) {
+         logLevel = _logLevel;
+      },
+
+      setLogFormatter : function(_logFormatter) {
+         logFormatter = _logFormatter;
+      }
    };
 });

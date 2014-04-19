@@ -1,4 +1,8 @@
-define(['module', 'angular-mocks', 'src/components/hello/hello'], function(module, angular) {
+define([
+   'module',
+   'angular-mocks',
+   'src/components/hello/hello'
+], function(module, angular) {
    'use strict';
 
    /*global describe : false, beforeEach : false, inject : false, it : false, expect : false*/

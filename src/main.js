@@ -24,12 +24,9 @@ requirejs.config({
    },
    map : {
       '*' : {
-         'less-builder' : 'bower_components/require-less/less-builder',
-         normalize      : 'bower_components/require-less/normalize',
-         lessc          : 'bower_components/require-less/lessc',
-
-         LoggerFactory  : 'src/core/loggerfactory/module',
-         ServiceFactory : 'src/core/servicefactory/module'
+         'less-builder'      : 'bower_components/require-less/less-builder',
+         normalize           : 'bower_components/require-less/normalize',
+         lessc               : 'bower_components/require-less/lessc'
       }
    },
    less : {
