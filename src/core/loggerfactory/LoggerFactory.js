@@ -3,14 +3,8 @@ define(['./LogLevel', './ConsoleLogWriter', './DefaultLogFormatter'], function(L
 
    var logWriter = DefaultLogWriter, logFormatter = DefaultLogFormatter, logLevel = LogLevel.ERROR;
 
-   /**
-    * Partial application to pre-capture a logger function
-    */
-   function prepareLogFn (logWriter, className, level) {
-      /**
-       * Invoke the specified `logFn` with the supplant
-       * functionality...
-       */
+   function prepareLogFn (className, level) {
+
       function enhancedLogFn () {
          var args = Array.prototype.slice.call(arguments);
          var argsJoined = args.join('\n\t');
@@ -23,7 +17,7 @@ define(['./LogLevel', './ConsoleLogWriter', './DefaultLogFormatter'], function(L
    }
 
    /**
-    * Support to generate class-specific logger instance with classname
+    * Generates class-specific logger instance with classname
     * only
     *
     * @param {String} module
@@ -34,11 +28,11 @@ define(['./LogLevel', './ConsoleLogWriter', './DefaultLogFormatter'], function(L
       module = (module) ? module.replace(/\//g, '.') : '';
 
       return {
-         trace : prepareLogFn(logWriter, module, LogLevel.TRACE),
-         debug : prepareLogFn(logWriter, module, LogLevel.DEBUG),
-         info  : prepareLogFn(logWriter, module, LogLevel.INFO),
-         warn  : prepareLogFn(logWriter, module, LogLevel.WARN),
-         error : prepareLogFn(logWriter, module, LogLevel.ERROR)
+         trace : prepareLogFn(module, LogLevel.TRACE),
+         debug : prepareLogFn(module, LogLevel.DEBUG),
+         info  : prepareLogFn(module, LogLevel.INFO),
+         warn  : prepareLogFn(module, LogLevel.WARN),
+         error : prepareLogFn(module, LogLevel.ERROR)
       };
    }
 

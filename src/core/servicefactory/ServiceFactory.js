@@ -1,4 +1,9 @@
-define(['module', 'src/core/loggerfactory/LoggerFactory', 'src/ngModule', 'lodash'], function(module, LoggerFactory, ngModule, _) {
+define([
+   'module',
+   'src/core/loggerfactory/LoggerFactory',
+   'src/ngModule',
+   'lodash'
+], function(module, LoggerFactory, ngModule, _) {
    'use strict';
 
    return {
@@ -15,6 +20,7 @@ define(['module', 'src/core/loggerfactory/LoggerFactory', 'src/ngModule', 'lodas
 
          ngModule.service(serviceName, serviceArray.concat(function() {
             this.logger = serviceLogger;
+            this._ = _;
             serviceFn.apply(this, arguments);
          }));
          serviceLogger.debug('Service [' + moduleName + '] created');

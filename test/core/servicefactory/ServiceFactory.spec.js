@@ -42,5 +42,13 @@ define([
          }
          expect(f).toThrow();
       });
+
+      it('should inject lodash into services', function() {
+         registerTestService([testService]);
+         var $injector =  angular.injector(['ngModule']);
+         var service = $injector.get('test_service');
+
+         expect(service._).toBeDefined();
+      });
    });
 });
