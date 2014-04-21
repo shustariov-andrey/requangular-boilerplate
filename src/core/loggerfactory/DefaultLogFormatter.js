@@ -12,7 +12,7 @@ define(function() {
       format : function(message, logLevel, componentName) {
          var date = new Date();
          var now = date.toTimeString().match(/\d{2}:\d{2}:\d{2}/)[0] + ':' + ('000' + date.getMilliseconds()).slice(-3);
-         componentName = componentName ? componentName.replace(/\//g, '.') : ''
+         componentName = componentName ? componentName.replace(/\//g, '.') : '';
          componentName = componentName.replace(/^src\./, '');
          return now + ' [' + logLevel.label + '] - [' + componentName + '] - ' + message;
       }
