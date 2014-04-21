@@ -22,18 +22,16 @@ define(['./LogLevel', './ConsoleLogWriter', './DefaultLogFormatter'], function(L
     *
     * @param {String} module
     *
-    * @returns Object wrapper facade to $log
+    * @returns Object with different log level methods
     */
    function getInstance (module) {
-      module = (module) ? module.replace(/\//g, '.') : '';
-
-      return {
-         trace : prepareLogFn(module, LogLevel.TRACE),
-         debug : prepareLogFn(module, LogLevel.DEBUG),
-         info  : prepareLogFn(module, LogLevel.INFO),
-         warn  : prepareLogFn(module, LogLevel.WARN),
-         error : prepareLogFn(module, LogLevel.ERROR)
-      };
+      var logger = {};
+      for (var level in LogLevel) {
+         if (LogLevel.hasOwnProperty(level)) {
+            logger[LogLevel[level].key] = prepareLogFn(module, LogLevel[level]);
+         }
+      }
+      return logger;
    }
 
    return {

@@ -37,7 +37,7 @@ define([
          });
          loggerInstance = LoggerFactory.getInstance('test/module');
          var result = loggerInstance.info('test_message');
-         expect(result).toMatch(/^INFO\sIItest\.moduleIItest_message$/);
+         expect(result).toMatch(/^INFO\sIItest\/moduleIItest_message$/);
       });
    });
 });
