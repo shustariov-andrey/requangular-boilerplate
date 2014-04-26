@@ -41,9 +41,16 @@ define(['./LogLevel', './ConsoleLogWriter', './DefaultLogFormatter'], function(L
       },
       /**
        *
-       * @param {LogLevel} _logLevel
+       * @param {LogLevel|string} _logLevel
        */
       setLogLevel : function(_logLevel) {
+         if (typeof _logLevel === 'string') {
+            if (LogLevel.hasOwnProperty(_logLevel)) {
+               _logLevel = LogLevel[_logLevel];
+            } else {
+               throw new Error('Unknown log level "' + _logLevel + '"');
+            }
+         }
          logLevel = _logLevel;
       },
 

@@ -27,6 +27,13 @@ define([
          expect(result).toBeDefined();
       });
 
+      it('should throw error, when log level is invalid', function() {
+         function f() {
+            LoggerFactory.setLogLevel('INVALID_LOG_LEVEL');
+         }
+         expect(f).toThrow();
+      });
+
       it('should allow custom log message formatting', function() {
          LoggerFactory.setLogLevel(LogLevel.INFO);
          LoggerFactory.setLogWriter(testLogWriter);

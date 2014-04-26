@@ -8,7 +8,8 @@ requirejs.config({
       domReady        : 'bower_components/requirejs-domready/domReady',
       text            : 'bower_components/requirejs-text/text',
       css             : 'bower_components/require-css/css',
-      less            : 'bower_components/require-less/less'
+      less            : 'bower_components/require-less/less',
+      json            : 'bower_components/requirejs-plugins/src/json'
    },
    shim : {
       angular : {

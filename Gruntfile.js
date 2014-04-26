@@ -30,14 +30,14 @@ module.exports = function(grunt){
                optimize : 'uglify2',
                generateSourceMaps : true,
                preserveLicenseComments : false,
-//               optimize : 'none',
                inlineText : true,
-               findNestedDependencies : false,
+               findNestedDependencies : true,
                paths : {
                   requireLib : 'bower_components/requirejs/require'
                },
                include : [
-                  'requireLib'
+                  'requireLib',
+                  'json'
                ],
                exclude : [
                   'bower_components/require-css/normalize',
@@ -48,9 +48,6 @@ module.exports = function(grunt){
       },
       preprocess : {
          web : {
-//            files : {
-//               'out/index.html'  : 'src/index.html'
-//            }
             src : 'src/index.html',
             dest : '<%= destinationFolder %>/index.html'
          }

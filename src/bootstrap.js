@@ -1,11 +1,18 @@
 requirejs([
    'domReady!',
-   'angular',
-   'src/ngModule',
-   'src/core/module',
-   'src/services/module',
-   'src/components/module'
-], function(document, angular, app){
+   'src/core/config/module'
+], function(document, Config){
    'use strict';
-   angular.bootstrap(document, [app.name]);
+
+   Config.init('config/config.json', function() {
+      requirejs([
+         'angular',
+         'src/ngModule',
+         'src/core/module',
+         'src/services/module',
+         'src/components/module'
+      ],function(angular, app) {
+         angular.bootstrap(document, [app.name]);
+      });
+   });
 });
