@@ -76,7 +76,7 @@ define([
    }
    function init(callback, path, location) {
       path = path || 'config/config.json';
-      location = location || window.location
+      location = location || window.location;
       readConfigFile(path, function(fileConfig) {
          var urlParmas = parseUrl(location);
          config = _.extend(defaultConfig, fileConfig, urlParmas);
