@@ -52,6 +52,20 @@ define([
       }
    }
 
+   /**
+    * Parses configuration files (config/config.json and config/local.json) and url parameters
+    * in order to create config object
+    *
+    * Priority of config sources:
+    * 1. url params
+    * 2. config.json
+    * 3. defaultConfig object
+    *
+    * @param {function} callback will be called after configuration parsing
+    * @param {string} [optional] path to config.json
+
+    */
+
    function readConfigFile(path, callback) {
       path = 'json!' + path;
       require([path], function(result) {
@@ -60,25 +74,51 @@ define([
          callback({});
       });
    }
-
-   /**
-    * Parses configuration files (config/config.json and config/local.json) and url parameters
-    * in order to create config object
-    *
-    * Priority of config sources:
-    * 1. url params
-    * 2. config.json
-    * 4. defaultConfig object
-    *
-    * @param {string} path directory, where to search for configuration
-    * @param {function} callback will be called after configuration parsing
-    */
-   function init(path, callback) {
-      path = path || './config.json';
+   function init(callback, path, location) {
+      path = path || 'config/config.json';
+      location = location || window.location
       readConfigFile(path, function(fileConfig) {
-         config = _.extend(defaultConfig, fileConfig);
+         var urlParmas = parseUrl(location);
+         config = _.extend(defaultConfig, fileConfig, urlParmas);
          callback(config);
       });
+   }
+
+   /**
+    * Parses given location object's search string. Tries to convert booleans to boolean
+    * numbers to numbers
+    *
+    * @param location
+    * @returns {Object}
+    */
+   function parseUrl(location) {
+      // remove first symbol which is '?'
+      var params = location.search.substring(1).split('&');
+      var configParams = _.filter(params, function(param) {
+         return param.match(/^config(\.\w)+/);
+      });
+
+      var obj = _.reduce(configParams, function(result, current) {
+         var key = current.split('=')[0];
+         var value = current.split('=')[1];
+         if (value === 'false') {
+            value = false;
+         } else if (value === 'true') {
+            value = true;
+         } else if (value.match(/^\d+$/)) {
+            value = parseFloat(value);
+         }
+
+         var keys = key.split('.');
+         var currentResult = result;
+         while (keys.length) {
+            var currentKey = keys.shift();
+            currentResult = currentResult[currentKey] = currentResult[currentKey] || (keys.length ? {} : value);
+         }
+         return result;
+      }, {});
+
+      return obj.config;
    }
 
    return {

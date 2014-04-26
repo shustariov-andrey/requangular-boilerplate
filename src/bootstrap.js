@@ -4,7 +4,7 @@ requirejs([
 ], function(document, Config){
    'use strict';
 
-   Config.init('config/config.json', function() {
+   Config.init(function() {
       requirejs([
          'angular',
          'src/ngModule',

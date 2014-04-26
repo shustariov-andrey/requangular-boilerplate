@@ -11,9 +11,9 @@ define([
          var initComplete = false;
 
          runs(function() {
-            Config.init('test/fixtures/config/config.json', function() {
+            Config.init(function() {
                initComplete = true;
-            });
+            }, 'test/fixtures/config/config.json');
          });
 
          waitsFor(function() {
@@ -32,10 +32,10 @@ define([
          var initComplete = false, result, defaultResult = Config.getConfig();
 
          runs(function() {
-            Config.init('test/fake/config.json', function(_result) {
+            Config.init(function(_result) {
                result = _result;
                initComplete = true;
-            });
+            }, 'test/fake/config.json');
          });
 
          waitsFor(function() {
@@ -51,9 +51,9 @@ define([
          var initComplete = false;
 
          runs(function() {
-            Config.init('test/fixtures/config/config.json', function() {
+            Config.init(function() {
                initComplete = true;
-            });
+            }, 'test/fixtures/config/config.json');
          });
 
          waitsFor(function() {
@@ -64,6 +64,46 @@ define([
             expect(Config.getConfig('Test.SubItem')).toEqual(42);
             expect(Config.getConfig('Test.SubSubItem.Value')).toEqual(10);
             expect(Config.getConfig('Test.SubSubItem.Value1')).toBeUndefined();
+         });
+      });
+
+      it('should override config with more prioritized sources', function() {
+         var initComplete = false;
+
+         runs(function() {
+            Config.init(function() {
+               initComplete = true;
+            }, 'test/fixtures/config/overriding-config.json');
+         });
+
+         waitsFor(function() {
+            return initComplete;
+         });
+
+         runs(function() {
+            expect(Config.getConfig('Core.LogLevel')).toEqual('DEBUG');
+         });
+      });
+
+      it('should parse url parameters', function() {
+         var initComplete = false;
+
+         runs(function() {
+            Config.init(function() {
+               initComplete = true;
+            }, 'test/fixtures/config/config.json', {
+               search : '?config.Test.TestValue=42&config.Test.TestValue1=true&config.Test.TestValue2=false'
+            });
+         });
+
+         waitsFor(function() {
+            return initComplete;
+         });
+
+         runs(function() {
+            expect(Config.getConfig('Test.TestValue')).toEqual(42);
+            expect(Config.getConfig('Test.TestValue2')).toEqual(false);
+            expect(Config.getConfig('Test.TestValue1')).toEqual(true);
          });
       });
    });
