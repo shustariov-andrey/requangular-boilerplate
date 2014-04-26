@@ -10,7 +10,6 @@
     "requirejs": "~2.1.11",
     "requirejs-text": "~2.0.10",
     "angular": "~1.2.16",
-    "angular-route": "~1.2.16",
     "requirejs-domready": "~2.0.1",
     "require-less": "~0.1.2",
     "require-css": "~0.1.2",

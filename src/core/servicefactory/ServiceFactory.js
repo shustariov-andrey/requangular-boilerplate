@@ -14,7 +14,7 @@ define([
 
          var serviceLogger = LoggerFactory.getInstance(moduleName);
          var serviceName = _.last(moduleName.split('\/'));
-         serviceLogger.trace('Creating service [' + moduleName + ']');
+         serviceLogger.trace('Register start');
 
          var serviceFn = serviceArray.pop();
 
@@ -23,7 +23,7 @@ define([
             this._ = _;
             serviceFn.apply(this, arguments);
          }));
-         serviceLogger.trace('Service [' + moduleName + '] created');
+         serviceLogger.trace('Register end');
       }
    };
 });

@@ -2,7 +2,6 @@ requirejs.config({
    baseUrl : '../',
    paths : {
       angular         : 'bower_components/angular/angular',
-      'angular-route' : 'bower_components/angular-route/angular-route',
       lodash          : 'bower_components/lodash/dist/lodash',
 
       domReady        : 'bower_components/requirejs-domready/domReady',
