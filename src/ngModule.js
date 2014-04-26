@@ -6,12 +6,15 @@ define([
 ], function(LoggerFactory, LogLevel, angular){
    'use strict';
 
-   var module = angular.module('ngModule', ['ngRoute']);
-   LoggerFactory.setLogLevel(LogLevel.DEBUG);
+   var ngModule = angular.module('ngModule', ['ngRoute']);
+   LoggerFactory.setLogLevel(LogLevel.TRACE);
 
-   module.config(['$routeProvider', function($routeProvider){
+   ngModule.config(['$routeProvider', function($routeProvider){
       $routeProvider.otherwise({redirectTo : '/hello'});
    }]);
 
-   return module;
+   var logger = LoggerFactory.getInstance('$log');
+   ngModule.value('$log', logger);
+
+   return ngModule;
 });
