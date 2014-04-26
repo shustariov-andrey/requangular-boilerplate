@@ -71,6 +71,13 @@ module.exports = function(grunt){
                browsers : ['PhantomJS']
             }
          }
+      },
+      copy : {
+         config : {
+            expand : true,
+            src : ['config/**'],
+            dest : '<%= destinationFolder %>'
+         }
       }
    };
 
@@ -83,11 +90,12 @@ module.exports = function(grunt){
    grunt.loadNpmTasks('grunt-preprocess');
    grunt.loadNpmTasks('grunt-contrib-watch');
    grunt.loadNpmTasks('grunt-karma');
+   grunt.loadNpmTasks('grunt-contrib-copy');
 
    grunt.registerTask('verify', ['jshint']);
    grunt.registerTask('test', ['karma:unit']);
    grunt.registerTask('build', [
-      'verify', 'test', 'clean', 'requirejs:compile', 'preprocess:web'
+      'verify', 'test', 'clean', 'requirejs:compile', 'preprocess:web', 'copy:config'
    ]);
 
    // Default task.
