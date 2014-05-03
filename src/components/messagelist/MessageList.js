@@ -7,21 +7,12 @@ define([
 
    ComponentFactory.register(module.id, {
       template : template,
-      controller : ['$scope', function($scope) {
-         $scope.messages = [
-            {
-               title : 'message 1',
-               details : 'some additional info'
-            },
-            {
-               title : 'Hello, world',
-               details : 'Hello world is output example'
-            },
-            {
-               title : 'Another message',
-               details : 'Another description'
-            }
-         ];
+      controller : ['$scope', 'MessageService', function($scope, MessageService) {
+         $scope.messages = MessageService.getMessages();
+
+         $scope.activate = function(message) {
+            MessageService.setActiveMessage(message);
+         };
       }]
    });
 });

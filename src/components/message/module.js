@@ -1,3 +1,3 @@
-define(['./Message'], function() {
+define(['./Message', './MessageService'], function() {
    'use strict';
 });

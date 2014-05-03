@@ -4,6 +4,7 @@ define([
    './config/module',
    './componentfactory/module',
    './compile/module',
-   './basestatemanager/module'
+   './basestatemanager/module',
+   './application/module'
 ], function () {
 });

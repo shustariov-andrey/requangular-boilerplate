@@ -1,6 +1,6 @@
 define([
    'module',
-   'src/core/componentfactory/module',
+   '../componentfactory/module',
    'src/core/config/module',
    'text!./Application.tpl.html'
 ], function(module, ComponentFactory, Config, template) {
