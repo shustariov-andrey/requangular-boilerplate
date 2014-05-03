@@ -1,6 +1,6 @@
 requirejs([
    'domReady!',
-   'src/core/config/module'
+   'src/cmn/core/config/module'
 ], function(document, Config){
    'use strict';
 
@@ -8,9 +8,8 @@ requirejs([
       requirejs([
          'angular',
          'src/ngModule',
-         'src/core/module',
-         'src/services/module',
-         'src/components/module'
+         'src/cmn/module',
+         'src/app/module'
       ],function(angular, app) {
          angular.bootstrap(document, [app.name]);
       });

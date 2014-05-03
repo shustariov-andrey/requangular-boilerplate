@@ -1,6 +1,6 @@
 define([
-   'src/core/loggerfactory/module',
-   'src/core/config/module',
+   'src/cmn/core/loggerfactory/module',
+   'src/cmn/core/config/module',
    'angular',
    'angular-ui-router'
 ], function(LoggerFactory, Config, angular){
