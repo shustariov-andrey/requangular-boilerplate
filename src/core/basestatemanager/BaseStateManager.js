@@ -1,6 +1,6 @@
 define([
    'module',
-   'src/ngModule',
+   '../../ngModule',
    'src/core/loggerfactory/module',
    'lodash'
 ], function(module, ngModule, LoggerFactory, _) {

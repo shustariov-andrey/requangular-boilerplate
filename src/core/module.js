@@ -3,6 +3,7 @@ define([
    './servicefactory/module',
    './config/module',
    './componentfactory/module',
-   './compile/module'
+   './compile/module',
+   './basestatemanager/module'
 ], function () {
 });

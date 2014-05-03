@@ -10,8 +10,7 @@ requirejs([
          'src/ngModule',
          'src/core/module',
          'src/services/module',
-         'src/components/module',
-         'src/layout/module'
+         'src/components/module'
       ],function(angular, app) {
          angular.bootstrap(document, [app.name]);
       });

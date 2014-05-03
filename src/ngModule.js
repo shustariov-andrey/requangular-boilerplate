@@ -6,7 +6,7 @@ define([
 ], function(LoggerFactory, Config, angular){
    'use strict';
 
-   var ngModule = angular.module('ngModule', ['ng', 'ui.router']);
+   var ngModule = angular.module('ngModule', ['ui.router']);
 
    LoggerFactory.setLogLevel(Config.getConfig('Core.LogLevel') || 'TRACE');
 
