@@ -1,6 +1,6 @@
 define([
    'module',
-   'src/core/ServiceFactory/module'
+   'src/core/servicefactory/module'
 ], function(module, ServiceFactory) {
    'use strict';
 
