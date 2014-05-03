@@ -1,7 +1,6 @@
 define([
-   './hello/module',
    './message/module',
    './messagelist/module',
-   './messagedetails/module',
+   './messagedetails/module'
 ], function() {
 });
