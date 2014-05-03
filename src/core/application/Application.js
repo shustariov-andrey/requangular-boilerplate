@@ -12,7 +12,7 @@ define([
    ComponentFactory.register(module.id, {
       template : template,
       controller : ['$scope', '$rootScope', function($scope, $rootScope) {
-         var componentName = Config.getConfig('MainComponentName');
+         var componentName = Config.getConfig('MainComponentName') || 'div';
          var applicationName = Config.getConfig('ApplicationTitle') || componentName;
 
          $scope.getMainComponent = function() {

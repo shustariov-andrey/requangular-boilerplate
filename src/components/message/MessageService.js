@@ -4,6 +4,10 @@ define([
 ], function(module, ServiceFactory) {
    'use strict';
 
+   /**
+    * Simple service for communication between MessageList and MessageDetails
+    * components - Mediator
+    */
    ServiceFactory.register(module.id, [function() {
 
       var messages = [

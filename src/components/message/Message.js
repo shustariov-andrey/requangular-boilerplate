@@ -9,7 +9,6 @@ define([
    ComponentFactory.register(module.id, {
       template : template,
       controller : [function() {
-
       }]
    });
 
