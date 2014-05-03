@@ -1,14 +1,15 @@
 define([
    'module',
    'src/ngModule',
-   'src/core/loggerfactory/module'
-], function(module, ngModule, LoggerFactory) {
+   'src/core/loggerfactory/module',
+   'lodash'
+], function(module, ngModule, LoggerFactory, _) {
    'use strict';
 
    var logger = LoggerFactory.getInstance(module.id);
 
    ngModule.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise("/main");
+      $urlRouterProvider.otherwise("/");
 
       $stateProvider
          .state('application', {
@@ -25,7 +26,7 @@ define([
 
    ngModule.run(['$rootScope', function($rootScope) {
 
-      ['$stateChangeStart', '$stateChangeSuccess'].forEach(function(eventName) {
+      _.each(['$stateChangeStart', '$stateChangeSuccess'], function(eventName) {
          $rootScope.$on(eventName, function(event, toState, toParams, fromState, fromParams) {
             logger.trace(
                event.name,

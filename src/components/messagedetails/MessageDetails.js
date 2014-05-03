@@ -10,4 +10,4 @@ define([
       controller : [function() {
       }]
    });
-})
+});

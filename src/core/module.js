@@ -3,5 +3,6 @@ define([
    './servicefactory/module',
    './config/module',
    './componentfactory/module',
+   './compile/module'
 ], function () {
 });

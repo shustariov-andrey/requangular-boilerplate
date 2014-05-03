@@ -1,8 +1,9 @@
 define([
    'module',
    'src/core/componentfactory/module',
+   'src/core/config/module',
    'text!./Application.tpl.html'
-], function(module, ComponentFactory, template) {
+], function(module, ComponentFactory, Config, template) {
    'use strict';
 
    /**
@@ -10,7 +11,17 @@ define([
     */
    ComponentFactory.register(module.id, {
       template : template,
-      controller : [function() {
+      controller : ['$scope', '$rootScope', function($scope, $rootScope) {
+         var componentName = Config.getConfig('MainComponentName');
+         var applicationName = Config.getConfig('ApplicationTitle') || componentName;
+
+         $scope.getMainComponent = function() {
+            return '<' + componentName + '/><' + componentName + '/>';
+         };
+
+         $rootScope.getTitle = function() {
+            return applicationName;
+         };
       }]
    });
 });
