@@ -10,7 +10,7 @@ define(['./LogLevel', './ConsoleLogWriter', './DefaultLogFormatter'], function(L
          var argsJoined = args.join('\n\t');
          var message = logFormatter.format(argsJoined, level, className);
 
-         return logWriter.write(logLevel, message);
+         return logWriter.write(level, message);
       }
 
       return level.value <= logLevel.value ? enhancedLogFn : function(){};
