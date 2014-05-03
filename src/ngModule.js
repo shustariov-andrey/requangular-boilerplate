@@ -1,13 +1,14 @@
 define([
    'src/core/loggerfactory/module',
    'src/core/config/module',
-   'angular'
+   'angular',
+   'angular-ui-router'
 ], function(LoggerFactory, Config, angular){
    'use strict';
 
-   var ngModule = angular.module('ngModule', ['ng']);
+   var ngModule = angular.module('ngModule', ['ng', 'ui.router']);
 
-   LoggerFactory.setLogLevel(Config.getConfig('Core.LogLevel') || 'TRACE');
+   LoggerFactory.setLogLevel(Config.getConfig('Core.LogLevel') || 'INFO');
 
    var logger = LoggerFactory.getInstance('$log');
    ngModule.value('$log', logger);

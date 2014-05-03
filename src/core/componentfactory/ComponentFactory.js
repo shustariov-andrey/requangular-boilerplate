@@ -19,7 +19,7 @@ define([
 
          var controllerFn = controller.pop();
 
-         ngModule.directive(componentName, [function() {
+         ngModule.directive(componentName[0].toLowerCase() + componentName.substring(1), [function() {
             return {
                priority : options.priority,
                template : template,
