@@ -14,13 +14,6 @@ define([
       $stateProvider
          .state('application', {
             abstract : true
-         })
-         .state('application.message', {
-            url : '/',
-            views : {
-               list    : {template : '<message-list></message-list>'},
-               details : {template : '<message-details></message-details>'}
-            }
          });
    }]);
 
@@ -30,7 +23,7 @@ define([
          $rootScope.$on(eventName, function(event, toState, toParams, fromState, fromParams) {
             logger.trace(
                event.name,
-                  'to   : ' + toState.name + ' ' + JSON.stringify(toParams),
+               'to   : ' + toState.name + ' ' + JSON.stringify(toParams),
                (fromState && fromState.name) ? ('from : ' + fromState.name + ' ' + JSON.stringify(fromParams)) : ''
             );
          });
@@ -39,7 +32,7 @@ define([
       $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
          logger.error(
             event.name,
-               'to   : ' + toState.name + ' ' + JSON.stringify(toParams),
+            'to   : ' + toState.name + ' ' + JSON.stringify(toParams),
             (fromState && fromState.name) ? ('from : ' + fromState.name + ' ' + JSON.stringify(fromParams)) : '',
             'Error: ' + error.name + '\n' + error.message
          );
@@ -48,7 +41,7 @@ define([
       $rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams) {
          logger.error(
             event.name,
-               'to   : ' + unfoundState.to + ' ' + JSON.stringify(unfoundState.toParams),
+            'to   : ' + unfoundState.to + ' ' + JSON.stringify(unfoundState.toParams),
             (fromState && fromState.name) ? ('from : ' + fromState.name + ' ' + JSON.stringify(fromParams)) : ''
          );
       });
