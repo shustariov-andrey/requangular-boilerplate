@@ -1,5 +1,6 @@
 define([
    './components/module',
-   './services/module'
+   './services/module',
+   './domain/module'
 ], function() {
 });

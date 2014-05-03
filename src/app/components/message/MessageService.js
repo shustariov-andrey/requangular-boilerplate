@@ -1,7 +1,8 @@
 define([
    'module',
-   'src/cmn/core/servicefactory/module'
-], function(module, ServiceFactory) {
+   'src/cmn/core/servicefactory/module',
+   'src/cmn/core/entityregistry/module'
+], function(module, ServiceFactory, EntityRegistry) {
    'use strict';
 
    /**
@@ -10,7 +11,7 @@ define([
     */
    ServiceFactory.register(module.id, [function() {
 
-      var messages = [
+      var messages = EntityRegistry.create('Message', [
          {
             title : 'message 1',
             details : 'some additional info'
@@ -23,7 +24,7 @@ define([
             title : 'Another message',
             details : 'Another description'
          }
-      ];
+      ]);
 
       var activeMessage = messages[0];
 

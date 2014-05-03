@@ -1,0 +1,4 @@
+define([
+   './Message'
+], function() {
+});

@@ -35,7 +35,7 @@ define([
             ]
          });
 
-         expect(EntityRegistry.getRegistry().Person).toBeDefined();
+         expect(EntityRegistry.getClassByName('Person')).toBeDefined();
          expect(EntityRegistry.getRegistry().Student).toBeDefined();
       });
 

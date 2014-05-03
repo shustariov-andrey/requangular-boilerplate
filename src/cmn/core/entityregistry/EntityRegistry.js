@@ -53,6 +53,7 @@ define([
    }
    
    function createArray(entityName, fieldsArray) {
+      logger.trace('Creating ' + fieldsArray.length + ' entity(-ies) of type ' + entityName);
       var entity = registry[entityName], result = [];
       for (var i = 0, len = fieldsArray.length; i < len; ++i) {
          var newObject = new entity.prototype(), fields = fieldsArray[i];
@@ -74,6 +75,9 @@ define([
       create   : create,
       getRegistry : function() {
          return _.cloneDeep(registry);
+      },
+      getClassByName : function(className) {
+         return registry[className];
       }
    };
 });
