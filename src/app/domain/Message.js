@@ -7,6 +7,6 @@ define([
       name : 'Message',
       prototype : function Message() {
       },
-      fields : ['name', 'title']
+      fields : ['message', 'title']
    });
 });
