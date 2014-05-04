@@ -1,3 +1,5 @@
+@import "../../styles/variables.less";
+
 body {
   margin-left: 20%;
   margin-right: 20%;
@@ -6,7 +8,7 @@ body {
 
 .message {
   height: 500px;
-  border: 1px solid green;
+  border: 1px solid @borderColor;
 
   &:after {
     clear: both;
@@ -15,14 +17,14 @@ body {
   .list {
     float: left;
     width: 30%;
-    background-color: #c7f5ff;
+    background-color: @listBackgrount;
     height: 100%;
   }
 
   .details {
     float: left;
     width: 70%;
-    background-color: #c9ffcb;
+    background-color: @selectedItemColor;
     height: 100%;
   }
 
