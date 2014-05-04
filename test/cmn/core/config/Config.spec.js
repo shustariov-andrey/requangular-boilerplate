@@ -106,5 +106,10 @@ define([
             expect(Config.getConfig('Test.TestValue1')).toEqual(true);
          });
       });
+
+      it('should allow to set custom config', function() {
+         Config.setConfig({test : 'config'});
+         expect(Config.getConfig('test')).toEqual('config');
+      });
    });
 });

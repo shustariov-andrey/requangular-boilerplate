@@ -123,6 +123,9 @@ define([
 
    return {
       init : init,
-      getConfig : getConfig
+      getConfig : getConfig,
+      setConfig : function(_config) {
+         config = _config;
+      }
    };
 });

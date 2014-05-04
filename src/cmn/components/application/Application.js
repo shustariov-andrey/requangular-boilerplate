@@ -23,7 +23,7 @@ define([
          }
 
          $scope.getMainComponent = function() {
-            return '<' + componentName + '/><' + componentName + '/>';
+            return '<' + componentName + '></' + componentName + '>';
          };
 
          $rootScope.getTitle = function() {
