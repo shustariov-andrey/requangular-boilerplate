@@ -1,21 +1,22 @@
 define([
    'module',
-   '../../ngModule',
+   'src/ngModule',
    'src/cmn/core/loggerfactory/module',
+   'src/cmn/core/layoutmanager/module',
    'lodash'
-], function(module, ngModule, LoggerFactory, _) {
+], function(module, ngModule, LoggerFactory, LayoutManager, _) {
    'use strict';
 
    var logger = LoggerFactory.getInstance(module.id);
 
-   ngModule.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise("/");
-
-      $stateProvider
-         .state('application', {
-            abstract : true
-         });
+   LayoutManager.register([{
+      name : 'application',
+      body : {
+         abstract : true
+      }
    }]);
+
+   LayoutManager.setDefaultUrl('/');
 
    ngModule.run(['$rootScope', function($rootScope) {
 

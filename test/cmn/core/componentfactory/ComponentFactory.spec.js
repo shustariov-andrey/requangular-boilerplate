@@ -47,5 +47,11 @@ define([
          expect(controllerContext.logger).toBeDefined();
          expect(controllerContext._).toBeDefined();
       });
+
+      it('should allow to add additional angular modules', function() {
+         var module = angular.module('test', []);
+         ComponentFactory.addAngularModule('test');
+         expect(angular.module('test')).toEqual(module);
+      });
    });
 });

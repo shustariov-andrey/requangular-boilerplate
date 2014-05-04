@@ -1,16 +1,20 @@
 define([
-   'src/ngModule'
-], function(ngModule) {
+   'src/cmn/core/layoutmanager/module'
+], function(LayoutManager) {
    'use strict';
 
-   ngModule.config(['$stateProvider', function($stateProvider) {
-      $stateProvider
-         .state('application.message', {
-            url : '/',
-            views : {
-               list    : {template : '<message-list></message-list>'},
-               details : {template : '<message-details></message-details>'}
+   LayoutManager.register([{
+      name : 'application.message',
+      body : {
+         url : '/',
+         views : {
+            list : {
+               template : '<message-list></message-list>'
+            },
+            details : {
+               template : '<message-details></message-details>'
             }
-         });
+         }
+      }
    }]);
 });

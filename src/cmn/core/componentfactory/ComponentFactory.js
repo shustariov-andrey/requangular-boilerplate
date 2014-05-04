@@ -1,9 +1,10 @@
 define([
    'module',
+   'angular',
    'src/ngModule',
    'src/cmn/core/loggerfactory/module',
    'lodash'
-], function(module, ngModule, LoggerFactory, _) {
+], function(module, angular, ngModule, LoggerFactory, _) {
    'use strict';
 
    return {
@@ -44,6 +45,9 @@ define([
                }
             };
          }]);
+      },
+      addAngularModule : function(moduleName) {
+         angular.module('ngModule').requires.push(moduleName);
       }
    };
 });

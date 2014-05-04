@@ -4,6 +4,7 @@ define([
    './config/module',
    './componentfactory/module',
    './compile/module',
-   './entityregistry/module'
+   './entityregistry/module',
+   './layoutmanager/module'
 ], function () {
 });
