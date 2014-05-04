@@ -25,7 +25,7 @@ module.exports = function(grunt){
                waitSeconds : 0,
                baseUrl : '.',
                name : 'src/bootstrap',
-               mainConfigFile : 'src/main.js',
+               mainConfigFile : ['src/main.js', 'src/app/main.js'],
                out : '<%= destinationFolder %>/main-built.js',
                optimize : 'uglify2',
                generateSourceMaps : true,
