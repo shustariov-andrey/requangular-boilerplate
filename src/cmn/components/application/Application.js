@@ -12,8 +12,15 @@ define([
    ComponentFactory.register(module.id, {
       template : template,
       controller : ['$scope', '$rootScope', function($scope, $rootScope) {
-         var componentName = Config.getConfig('MainComponentName') || 'div';
-         var applicationName = Config.getConfig('ApplicationTitle') || componentName;
+         var componentName = Config.getConfig('MainComponentName');
+         if (!componentName) {
+            throw new Error('MainComponentName is not specified in config - nothing to launch');
+         }
+         var applicationName = Config.getConfig('ApplicationTitle');
+         if (!applicationName) {
+            this.logger.warn('ApplicationTitle option is not specified. Component name will be used instead');
+            applicationName = componentName;
+         }
 
          $scope.getMainComponent = function() {
             return '<' + componentName + '/><' + componentName + '/>';

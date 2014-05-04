@@ -10,6 +10,10 @@ define([
       controller : ['$scope', 'MessageService', function($scope, MessageService) {
          $scope.messages = MessageService.getMessages();
 
+         $scope.getActiveMessage = function() {
+            return MessageService.getActiveMessage();
+         };
+
          $scope.activate = function(message) {
             MessageService.setActiveMessage(message);
          };
