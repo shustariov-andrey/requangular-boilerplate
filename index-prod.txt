@@ -1,1 +1,2 @@
-<script src="main-built.js"></script>
+<script src="cmn-built.js"></script>
+<script src="app-built.js"></script>

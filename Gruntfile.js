@@ -20,13 +20,13 @@ module.exports = function(grunt){
          '<%= destinationFolder %>'
       ],
       requirejs : {
-         compile : {
+         cmn : {
             options : {
                waitSeconds : 0,
                baseUrl : '.',
-               name : 'src/bootstrap',
-               mainConfigFile : ['src/main.js', 'src/app/main.js'],
-               out : '<%= destinationFolder %>/main-built.js',
+               name : 'src/cmn/module',
+               mainConfigFile : ['src/main.js'],
+               out : '<%= destinationFolder %>/cmn-built.js',
                optimize : 'uglify2',
                generateSourceMaps : true,
                preserveLicenseComments : false,
@@ -42,6 +42,23 @@ module.exports = function(grunt){
                exclude : [
                   'bower_components/require-css/normalize',
                   'bower_components/require-less/normalize'
+               ]
+            }
+         },
+         app : {
+            options : {
+               waitSeconds : 0,
+               baseUrl : '.',
+               name : 'src/bootstrap',
+               mainConfigFile : ['src/main.js', 'src/app/main.js'],
+               out : '<%= destinationFolder %>/app-built.js',
+               optimize : 'uglify2',
+               generateSourceMaps : true,
+               preserveLicenseComments : false,
+               inlineText : true,
+               findNestedDependencies : true,
+               exclude : [
+                  'src/cmn/module'
                ]
             }
          }
@@ -95,7 +112,7 @@ module.exports = function(grunt){
    grunt.registerTask('verify', ['jshint']);
    grunt.registerTask('test', ['karma:unit']);
    grunt.registerTask('build', [
-      'verify', 'test', 'clean', 'requirejs:compile', 'preprocess:web', 'copy:config'
+      'verify', 'test', 'clean', 'requirejs:cmn', 'requirejs:app', 'preprocess:web', 'copy:config'
    ]);
 
    // Default task.

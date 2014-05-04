@@ -4,4 +4,5 @@ define([
    './layout/module',
    'css!./styles/reset.css'
 ], function() {
+   'use strict';
 });
