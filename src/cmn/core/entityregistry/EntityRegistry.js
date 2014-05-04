@@ -14,7 +14,7 @@ define([
       var fields = options.fields;
       
       var fieldsDescriptors = {};
-      fields.forEach(function(field) {
+      _.each(fields, function(field) {
          var obj = {};
          obj.configurable = !!options.isFinal;
          obj.enumerable = false;
