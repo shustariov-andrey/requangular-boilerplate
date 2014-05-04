@@ -25,6 +25,7 @@ requirejs.config({
    map : {
       '*' : {
          'less-builder'      : 'bower_components/require-less/less-builder',
+         'css-builder'      : 'bower_components/require-css/css-builder',
          normalize           : 'bower_components/require-less/normalize',
          lessc               : 'bower_components/require-less/lessc'
       }

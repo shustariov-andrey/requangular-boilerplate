@@ -1,5 +1,6 @@
 define([
    './components/module',
-   './core/module'
+   './core/module',
+   'css!./styles/reset.css'
 ], function() {
 });
