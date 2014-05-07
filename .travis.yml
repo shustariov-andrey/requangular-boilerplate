@@ -6,4 +6,4 @@ before_install: npm install -g grunt-cli bower codeclimate-test-reporter
 install:
   - npm install
   - bower install
-after_script: CODECLIMATE_REPO_TOKEN=7f4cc0039b0272cb67fdf65c1dc01ce2340dfc2e169c3a68eef51f096dfdde39 codeclimate < lcov.info
+after_script: CODECLIMATE_REPO_TOKEN=7f4cc0039b0272cb67fdf65c1dc01ce2340dfc2e169c3a68eef51f096dfdde39 codeclimate < find . -name "lcov.info"
