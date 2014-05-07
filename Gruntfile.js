@@ -95,6 +95,22 @@ module.exports = function(grunt){
             src : ['config/**'],
             dest : '<%= destinationFolder %>'
          }
+      },
+      coveralls: {
+         options: {
+            // LCOV coverage file relevant to every target
+
+
+            // When true, grunt-coveralls will only print a warning rather than
+            // an error, to prevent CI builds from failing unnecessarily (e.g. if
+            // coveralls.io is down). Optional, defaults to false.
+            force: false
+         },
+         all : {
+            src: 'coverage/*/lcov.info',
+
+         }
+
       }
    };
 
@@ -108,11 +124,12 @@ module.exports = function(grunt){
    grunt.loadNpmTasks('grunt-contrib-watch');
    grunt.loadNpmTasks('grunt-karma');
    grunt.loadNpmTasks('grunt-contrib-copy');
+   grunt.loadNpmTasks('grunt-coveralls');
 
    grunt.registerTask('verify', ['jshint']);
    grunt.registerTask('test', ['karma:unit']);
    grunt.registerTask('build', [
-      'verify', 'test', 'clean', 'requirejs:cmn', 'requirejs:app', 'preprocess:web', 'copy:config'
+      'verify', 'test', 'coveralls:all', 'clean', 'requirejs:cmn', 'requirejs:app', 'preprocess:web', 'copy:config'
    ]);
 
    // Default task.

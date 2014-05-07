@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-  - "0.11"
   - "0.10"
-before_install: npm install -g grunt-cli bower codeclimate-test-reporter
+before_install: npm install -g grunt-cli bower
 install:
   - npm install
   - bower install
-after_script: CODECLIMATE_REPO_TOKEN=7f4cc0039b0272cb67fdf65c1dc01ce2340dfc2e169c3a68eef51f096dfdde39 codeclimate < find . -name "lcov.info"
