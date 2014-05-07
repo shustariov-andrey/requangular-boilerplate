@@ -1,11 +1,7 @@
 angularjs-requirejs
 ===================
 
-[![Build status](https://api.travis-ci.org/shustariov-andrey/angularjs-requirejs.png?branch=master)](https://travis-ci.org/shustariov-andrey/angularjs-requirejs)
-
-[![Dependencies](https://david-dm.org/shustariov-andrey/angularjs-requirejs.png)](https://david-dm.org/shustariov-andrey/angularjs-requirejs)
-
-[![Dev dependencies](https://david-dm.org/shustariov-andrey/angularjs-requirejs/dev-status.png)](https://david-dm.org/shustariov-andrey/angularjs-requirejs#info=devDependencies)
+[![Build status](https://api.travis-ci.org/shustariov-andrey/angularjs-requirejs.png?branch=master)](https://travis-ci.org/shustariov-andrey/angularjs-requirejs) [![Dependencies](https://david-dm.org/shustariov-andrey/angularjs-requirejs.png)](https://david-dm.org/shustariov-andrey/angularjs-requirejs) [![Dev dependencies](https://david-dm.org/shustariov-andrey/angularjs-requirejs/dev-status.png)](https://david-dm.org/shustariov-andrey/angularjs-requirejs#info=devDependencies) [![Code Climate](https://codeclimate.com/github/shustariov-andrey/angularjs-requirejs.png)](https://codeclimate.com/github/shustariov-andrey/angularjs-requirejs)
 
 Overview
 --------
