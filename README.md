@@ -6,14 +6,11 @@ angularjs-requirejs
 Overview
 --------
 
-Simple boilerplate code for application, which will be based on [AngularJs](http://www.angularjs.org/) and [RequireJs](http://requirejs.org/)
+This is a boilerplate seed application for projects that will be based on [AngularJs](http://www.angularjs.org/) and [RequireJs](http://requirejs.org/). It has several abstactions for component-oriented development style, like component factory, which utilizes [AngularJs directives](https://docs.angularjs.org/guide/directive). Also provides configuration, layout, service and entity management, uses its own logger implementation.
 
-Warning!
-Works only via http!
 
-[NodeJs](http://nodejs.org/) should be installed for proper work of build
-
-Execute:
+Usage
+--------
 
 `npm install -g grunt-cli bower`
 
