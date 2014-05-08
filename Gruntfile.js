@@ -4,11 +4,13 @@ module.exports = function(grunt){
    var pkg = grunt.file.readJSON('package.json');
    var sources = ['src/**/*.js', 'test/**/*.js', 'Gruntfile.js'];
    var destinationFolder = './out';
+   var coverageBaseFolder = 'coverage';
    // Project configuration.
    var config = {
       // Metadata.
       pkg : pkg,
       destinationFolder : destinationFolder,
+      coverageBaseFolder : coverageBaseFolder,
       // Task configuration.
       jshint : {
          options : {
@@ -17,7 +19,8 @@ module.exports = function(grunt){
          all : sources
       },
       clean : [
-         '<%= destinationFolder %>'
+         '<%= destinationFolder %>',
+         '<%= coverageBaseFolder %>'
       ],
       requirejs : {
          cmn : {
@@ -107,8 +110,7 @@ module.exports = function(grunt){
             force: false
          },
          all : {
-            src: 'coverage/*/lcov.info',
-
+            src: '<%= coverageBaseFolder%>/*/lcov.info'
          }
 
       }
@@ -129,6 +131,9 @@ module.exports = function(grunt){
    grunt.registerTask('verify', ['jshint']);
    grunt.registerTask('test', ['karma:unit']);
    grunt.registerTask('build', [
+      'verify', 'test', 'clean', 'requirejs:cmn', 'requirejs:app', 'preprocess:web', 'copy:config'
+   ]);
+   grunt.registerTask('ci-build', [
       'verify', 'test', 'coveralls:all', 'clean', 'requirejs:cmn', 'requirejs:app', 'preprocess:web', 'copy:config'
    ]);
 

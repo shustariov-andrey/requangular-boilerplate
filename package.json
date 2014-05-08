@@ -7,7 +7,7 @@
     "url": "https://github.com/shustariov-andrey/angularjs-requirejs"
   },
   "scripts": {
-    "test": "grunt build"
+    "test": "grunt ci-build"
   },
   "keywords": [
     "angularjs",
