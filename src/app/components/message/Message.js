@@ -1,10 +1,8 @@
 define([
    'module',
    'src/cmn/core/componentfactory/module',
-   'text!./Message.tpl.html',
-   'src/ngModule',
-   'ui-utils'
-], function(module, ComponentFactory, template, ngModule) {
+   'text!./Message.tpl.html'
+], function(module, ComponentFactory, template) {
    'use strict';
 
    ComponentFactory.register(module.id, {
@@ -12,6 +10,4 @@ define([
       controller : [function() {
       }]
    });
-
-   ngModule.requires.push('ui.utils');
 });

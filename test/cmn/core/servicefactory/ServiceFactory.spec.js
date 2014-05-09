@@ -28,12 +28,15 @@ define([
          expect(service.testMethod()).toEqual('test');
       });
 
-      it('should inject logger into services', function() {
+      it('should inject generic components into services', function() {
          registerTestService([testService]);
          var $injector =  angular.injector(['ngModule']);
          var service = $injector.get('test_service');
 
          expect(service.logger).toBeDefined();
+         expect(service._).toBeDefined();
+         expect(service.EntityRegistry).toBeDefined();
+         expect(service.Config).toBeDefined();
       });
 
       it('should fail, when service is not in array format', function() {

@@ -3,4 +3,5 @@ define([
    './messagelist/module',
    './messagedetails/module'
 ], function() {
+   'use strict';
 });

@@ -36,7 +36,7 @@ define([
          expect(f).toThrow();
       });
 
-      it('should inject logger and lodash into controller context', function() {
+      it('should inject generic components into controller context', function() {
          registerTestComponent('test', component);
          var $injector = angular.injector(['ngModule']);
          var $rootScope = $injector.get('$rootScope');
@@ -47,6 +47,7 @@ define([
          $scope.$digest();
          expect($scope.logger).toBeDefined();
          expect($scope._).toBeDefined();
+         expect($scope.Config).toBeDefined();
       });
    });
 });

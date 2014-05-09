@@ -1,9 +1,8 @@
 define([
    'module',
    'src/cmn/core/componentfactory/module',
-   'src/cmn/core/config/module',
    'text!./Application.tpl.html'
-], function(module, ComponentFactory, Config, template) {
+], function(module, ComponentFactory, template) {
    'use strict';
 
    /**
@@ -12,11 +11,11 @@ define([
    ComponentFactory.register(module.id, {
       template : template,
       controller : ['$scope', '$rootScope', function($scope, $rootScope) {
-         var componentName = Config.getConfig('MainComponentName');
+         var componentName = $scope.Config.getConfig('MainComponentName');
          if (!componentName) {
             throw new Error('MainComponentName is not specified in config - nothing to launch');
          }
-         var applicationName = Config.getConfig('ApplicationTitle');
+         var applicationName = $scope.Config.getConfig('ApplicationTitle');
          if (!applicationName) {
             $scope.logger.warn('ApplicationTitle option is not specified. Component name will be used instead');
             applicationName = componentName;

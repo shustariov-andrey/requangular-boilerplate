@@ -1,8 +1,7 @@
 define([
    'module',
-   'src/cmn/core/servicefactory/module',
-   'src/cmn/core/entityregistry/module'
-], function(module, ServiceFactory, EntityRegistry) {
+   'src/cmn/core/servicefactory/module'
+], function(module, ServiceFactory) {
    'use strict';
 
    /**
@@ -11,7 +10,7 @@ define([
     */
    ServiceFactory.register(module.id, [function() {
 
-      var messages = EntityRegistry.create('Message', [
+      var messages = this.EntityRegistry.create('Message', [
          {
             title : 'message 1',
             details : 'some additional info'

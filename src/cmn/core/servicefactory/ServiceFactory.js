@@ -1,9 +1,11 @@
 define([
    'module',
    'src/cmn/core/loggerfactory/module',
+   'src/cmn/core/config/module',
+   'src/cmn/core/entityregistry/module',
    'src/ngModule',
    'lodash'
-], function(module, LoggerFactory, ngModule, _) {
+], function(module, LoggerFactory, Config, EntityRegistry, ngModule, _) {
    'use strict';
 
    return {
@@ -21,6 +23,8 @@ define([
          ngModule.service(serviceName, serviceArray.concat(function() {
             this.logger = serviceLogger;
             this._ = _;
+            this.Config = Config;
+            this.EntityRegistry = EntityRegistry;
             serviceFn.apply(this, arguments);
          }));
          serviceLogger.trace('Register end');

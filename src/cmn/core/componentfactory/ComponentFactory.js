@@ -3,8 +3,9 @@ define([
    'angular',
    'src/ngModule',
    'src/cmn/core/loggerfactory/module',
+   'src/cmn/core/config/module',
    'lodash'
-], function(module, angular, ngModule, LoggerFactory, _) {
+], function(module, angular, ngModule, LoggerFactory, Config, _) {
    'use strict';
 
    return {
@@ -35,6 +36,7 @@ define([
 
                      arguments[index].logger = logger;
                      arguments[index]._ = _;
+                     arguments[index].Config = Config;
                   }
                   controllerFn.apply(this, arguments);
                }),
