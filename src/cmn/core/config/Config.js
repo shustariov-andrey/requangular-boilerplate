@@ -6,7 +6,8 @@ define([
 
    var defaultConfig = {
       Core : {
-         LogLevel : 'INFO'
+         LogLevel : 'INFO',
+         Expose : true
       }
    };
 
@@ -79,7 +80,7 @@ define([
       location = location || window.location;
       readConfigFile(path, function(fileConfig) {
          var urlParmas = parseUrl(location);
-         config = _.extend(defaultConfig, fileConfig, urlParmas);
+         config = _.merge(defaultConfig, fileConfig, urlParmas);
          callback(config);
       });
    }

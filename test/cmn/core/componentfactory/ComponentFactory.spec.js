@@ -44,14 +44,9 @@ define([
          var $scope = $rootScope.$new();
          var element = angular.element('<test></test>');
          $compile(element)($scope);
-         expect(controllerContext.logger).toBeDefined();
-         expect(controllerContext._).toBeDefined();
-      });
-
-      it('should allow to add additional angular modules', function() {
-         var module = angular.module('test', []);
-         ComponentFactory.addAngularModule('test');
-         expect(angular.module('test')).toEqual(module);
+         $scope.$digest();
+         expect($scope.logger).toBeDefined();
+         expect($scope._).toBeDefined();
       });
    });
 });

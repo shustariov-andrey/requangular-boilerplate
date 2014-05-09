@@ -15,11 +15,17 @@ define([
       
       var fieldsDescriptors = {};
       _.each(fields, function(field) {
-         var obj = {};
-         obj.configurable = !!options.isFinal;
-         obj.enumerable = false;
-         obj.writable = true;
-         obj.value = null;
+         var obj = {
+            configurable : !!options.isFinal,
+            enumerable : false,
+            get : function() {
+               return this['_' + field];
+            },
+            set : function(newValue) {
+               this['_' + field] = newValue;
+            }
+         };
+         obj['_' + field] = null;
          fieldsDescriptors[field] = obj;
       });
       
@@ -69,7 +75,7 @@ define([
    }
    
    var registry = {};
-   
+
    return {
       register : register,
       create   : create,

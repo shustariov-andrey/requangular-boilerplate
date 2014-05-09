@@ -16,6 +16,7 @@ define([
          }
 
          var logger = LoggerFactory.getInstance(moduleName);
+         logger.trace('Register start');
          var componentName = _.last(moduleName.split('\/'));
 
          var controllerFn = controller.pop();
@@ -29,8 +30,12 @@ define([
                restrict : options.restrict || 'E',
                scope : options.scope || false,
                controller : controller.concat(function() {
-                  this.logger = logger;
-                  this._ = _;
+                  if (_.contains(controller, '$scope')) {
+                     var index = _.indexOf(controller, '$scope');
+
+                     arguments[index].logger = logger;
+                     arguments[index]._ = _;
+                  }
                   controllerFn.apply(this, arguments);
                }),
                compile : function() {
@@ -45,9 +50,7 @@ define([
                }
             };
          }]);
-      },
-      addAngularModule : function(moduleName) {
-         angular.module('ngModule').requires.push(moduleName);
+         logger.trace('Register end');
       }
    };
 });

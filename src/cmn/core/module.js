@@ -1,10 +1,11 @@
 define([
+   './config/module',
    './loggerfactory/module',
    './servicefactory/module',
-   './config/module',
    './componentfactory/module',
-   './compile/module',
    './entityregistry/module',
-   './layoutmanager/module'
+   './layoutmanager/module',
+   './compile/module'
 ], function () {
+   'use strict';
 });

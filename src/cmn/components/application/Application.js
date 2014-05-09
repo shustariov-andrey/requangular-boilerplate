@@ -18,7 +18,7 @@ define([
          }
          var applicationName = Config.getConfig('ApplicationTitle');
          if (!applicationName) {
-            this.logger.warn('ApplicationTitle option is not specified. Component name will be used instead');
+            $scope.logger.warn('ApplicationTitle option is not specified. Component name will be used instead');
             applicationName = componentName;
          }
 
