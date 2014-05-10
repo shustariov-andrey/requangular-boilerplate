@@ -5,33 +5,46 @@ define([
    'use strict';
    /*global describe : false, beforeEach : false, inject : false, it : false, expect : false*/
 
-   function Person(name, age) {
-      this.name = name;
-      this.age = age;
-   }
-
-   function Student(course) {
-      this.course = course;
-   }
-
    describe(module.id, function() {
       it('should register entity', function() {
 
          EntityRegistry.register({
-            prototype : Person,
             name : 'Person',
             fields : [
-               'name',
-               'age'
+               {
+                  name : 'name',
+                  options : {
+                     required : true,
+                     type : 'string'
+                  }
+               },
+               'age',
+               {
+                  name : 'location',
+                  options : {
+                     type : 'Location'
+                  }
+               }
             ]
          });
 
          EntityRegistry.register({
-            prototype : Student,
             parent : 'Person',
             name : 'Student',
             fields : [
                'course'
+            ]
+         });
+
+         EntityRegistry.register({
+            name : 'Location',
+            fields : [
+               {
+                  name : 'name',
+                  options : {
+                     required: true
+                  }
+               }
             ]
          });
 
@@ -47,8 +60,8 @@ define([
          });
 
          expect(student).toBeDefined();
-         expect(student instanceof Student).toBeTruthy();
-         expect(student instanceof Person).toBeTruthy();
+         expect(student instanceof EntityRegistry.getClassByName('Student').prototype).toBeTruthy();
+         expect(student instanceof EntityRegistry.getClassByName('Person').prototype).toBeTruthy();
          expect(student.name).toEqual('student1');
          expect(student.age).toEqual(17);
          expect(student.course).toEqual(4);
@@ -67,6 +80,54 @@ define([
          }]);
 
          expect(students.length).toEqual(2);
+      });
+
+      it('should throw if required field is not specified', function() {
+         function f() {
+            EntityRegistry.create('Student', [{
+               age : 17,
+               course : 4
+            }]);
+         }
+
+         expect(f).toThrow();
+      });
+
+      it('should throw if field is of incorrect type', function() {
+         function type() {
+            EntityRegistry.create('Student', [{
+               name : true
+            }]);
+         }
+
+         function clazz() {
+            EntityRegistry.create('Student', [{
+               name : 'name1',
+               location : 'Student'
+            }]);
+         }
+
+         function unknown() {
+            EntityRegistry.register({
+               name : 'Test',
+               fields : [
+                  {
+                     name : 'name',
+                     options : {
+                        required : true,
+                        type : 'Unknown'
+                     }
+                  }
+               ]
+            });
+            EntityRegistry.create('Test', {
+               name : 'name1'
+            });
+         }
+
+         expect(type).toThrow();
+         expect(clazz).toThrow();
+         expect(unknown).toThrow();
       });
    });
 });

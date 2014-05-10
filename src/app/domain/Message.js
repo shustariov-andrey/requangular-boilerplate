@@ -5,8 +5,16 @@ define([
 
    EntityRegistry.register({
       name : 'Message',
-      prototype : function Message() {
-      },
-      fields : ['message', 'title']
+      fields : [{
+         name : 'message',
+         options : {
+            required : true
+         }
+      }, {
+         name : 'title',
+         options : {
+            required : true
+         }
+      }]
    });
 });

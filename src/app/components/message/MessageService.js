@@ -13,15 +13,15 @@ define([
       var messages = this.EntityRegistry.create('Message', [
          {
             title : 'message 1',
-            details : 'some additional info'
+            message : 'some additional info'
          },
          {
             title : 'Hello, world',
-            details : 'Hello world is output example'
+            message : 'Hello world is output example'
          },
          {
             title : 'Another message',
-            details : 'Another description'
+            message : 'Another description'
          }
       ]);
 
