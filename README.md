@@ -21,6 +21,13 @@ Applicaiton must be served over HTTP (For simplicity I would recommend [http-ser
 ## Features ##
 ---
 
+### EntityRegistry ###
+(no docs yeat)
+### ServiceFactory ###
+(no docs yeat)
+### LayoutManager ###
+(no docs yeat)
+
 ### ComponentFactory ###
 
 Registers components, that are, basically, [AngularJs directives](https://docs.angularjs.org/guide/directive). Components are fundamental building blocks, that incapsulate logic. All user defined components should be located under `src/app/components` folder. ComponentFactory is a RequireJs module and should be specified as a dependency.
