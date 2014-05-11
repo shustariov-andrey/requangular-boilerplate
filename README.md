@@ -9,7 +9,7 @@ This is a boilerplate seed application for projects that will be based on [Angul
 
 ## Build ##
 ---
-```
+```SH
 npm install -g grunt-cli bower
 npm install
 bower install
