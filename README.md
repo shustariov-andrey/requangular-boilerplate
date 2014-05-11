@@ -149,6 +149,7 @@ will produce following console output, using ```DefaultMessageFormatter```:
 ```22:23:14:801 [TRACE] - [app.components.mycomponent.MyComponent] - my message```
 
 LoggerFactory provides following log levels:
+
 1. TRACE
 2. DEBUG
 3. INFO
