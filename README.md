@@ -22,11 +22,11 @@ Applicaiton must be served over HTTP (For simplicity I would recommend [http-ser
 ---
 
 ### EntityRegistry ###
-(no docs yeat)
+(no docs yet)
 ### ServiceFactory ###
-(no docs yeat)
+(no docs yet)
 ### LayoutManager ###
-(no docs yeat)
+(no docs yet)
 
 ### ComponentFactory ###
 
