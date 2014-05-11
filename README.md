@@ -127,7 +127,7 @@ Note, that config/config.json is not required, but Config will try to read it an
 
 ### LoggerFactory ###
 
-Used to generate logger instance for specified module name. Mostly used in core part of application to create component- or service- specific instance of logger, but can be specified as AMD dependency to create some custom logger. Such things as LogWriter and MessageFormatters are separated from LoggerFactory and may be easily replaced. Default implementations of LogWriter and MessageFormatter are [ConsoleLogWriter](https://github.com/shustariov-andrey/requangular-boilerplate/blob/master/src/cmn/core/loggerfactory/ConsoleLogWriter.js) and [DefaultMessageFormatter](https://github.com/shustariov-andrey/requangular-boilerplate/blob/master/src/cmn/core/loggerfactory/DefaultLogFormatter.js) correspondingly.
+Used to generate logger instance for specified module name. Mostly used in core part of application to create component- or service- specific instance of logger, but can be specified as AMD dependency to create some custom logger. Such things as LogWriter and MessageFormatters are separated from LoggerFactory and may be easily replaced. Default implementations of LogWriter and MessageFormatter are [ConsoleLogWriter](./src/cmn/core/loggerfactory/ConsoleLogWriter.js) and [DefaultMessageFormatter](./src/cmn/core/loggerfactory/DefaultLogFormatter.js) correspondingly.
 
 So this line of code
 
