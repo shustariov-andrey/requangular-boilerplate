@@ -1,7 +1,7 @@
 requangular-boilerplate
 ===================
 
-[![Build Status](https://travis-ci.org/shustariov-andrey/requangular-boilerplate.svg?branch=master)](https://travis-ci.org/shustariov-andrey/requangular-boilerplate) [![Dependencies](https://david-dm.org/shustariov-andrey/angularjs-requirejs.png)](https://david-dm.org/shustariov-andrey/angularjs-requirejs) [![Dev dependencies](https://david-dm.org/shustariov-andrey/angularjs-requirejs/dev-status.png)](https://david-dm.org/shustariov-andrey/angularjs-requirejs#info=devDependencies) [![Code Climate](https://codeclimate.com/github/shustariov-andrey/requangular-boilerplate.png)](https://codeclimate.com/github/shustariov-andrey/requangular-boilerplate) [![Coverage Status](https://coveralls.io/repos/shustariov-andrey/angularjs-requirejs/badge.png?branch=master)](https://coveralls.io/r/shustariov-andrey/angularjs-requirejs?branch=master)
+[![Build Status](https://travis-ci.org/shustariov-andrey/requangular-boilerplate.svg?branch=master)](https://travis-ci.org/shustariov-andrey/requangular-boilerplate) [![devDependency Status](https://david-dm.org/shustariov-andrey/requangular-boilerplate/dev-status.svg)](https://david-dm.org/shustariov-andrey/requangular-boilerplate#info=devDependencies) [![Code Climate](https://codeclimate.com/github/shustariov-andrey/requangular-boilerplate.png)](https://codeclimate.com/github/shustariov-andrey/requangular-boilerplate) [![Coverage Status](https://coveralls.io/repos/shustariov-andrey/angularjs-requirejs/badge.png?branch=master)](https://coveralls.io/r/shustariov-andrey/angularjs-requirejs?branch=master)
 
 Overview
 --------
