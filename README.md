@@ -73,9 +73,7 @@ define([
 Component factory will generate ```<my-component></my-component>``` directive, which then may be used as part of another component or be the main component and bootstrap application with itself. To register ```my-component``` component as main ```MainComponentName``` configuration option must point to its name like this:
 ```JSON
 {
-    ...
     "MainComponentName" : "message",
-    ...
 }
 ```
 
