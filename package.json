@@ -1,10 +1,10 @@
 {
-  "name": "angularjs-requirejs",
+  "name": "requangular-boilerplate",
   "version": "0.1.0",
-  "description": "Template for applications based on angularjs and requirejs",
+  "description": "Boilerplate for applications based on angularjs and requirejs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shustariov-andrey/angularjs-requirejs"
+    "url": "https://github.com/shustariov-andrey/requangular-boilerplate"
   },
   "scripts": {
     "test": "grunt ci-build"
