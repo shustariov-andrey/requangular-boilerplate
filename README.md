@@ -95,7 +95,7 @@ Facade for accessing to application configuration, that may be specfied as:
     "MyConfParam" : 42
 }
 ```
-3. Hardcoded predefined default value in [Config.js module](./blob/master/src/cmn/core/config/Config.js#L7)
+3. Hardcoded predefined default value in [Config.js module](./src/cmn/core/config/Config.js#L7)
 
 Configuration is generated during applicaiton bootstrap from all sources and has the same priority as specified in above list. Config object is injected into ```$scope``` of components controller or in ```this``` of service function for ease of access. To get configuration option use ```getConfig()``` method.
 
