@@ -178,10 +178,8 @@ define([
 ], function(module, LoggerFactory) {
     'use strict';
     
-    /**
-     * module.id will contain path to current file and will be used to display something like fully-qualified module
-     * name in log messages.
-     * /
+    // module.id will contain path to current file and will be used to display something like fully-qualified module
+    // name in log messages.
     var logger = LoggerFactory.getInstance(module.id); 
     
     logger.trace('This message will be displayed if log level is trace or lower');
