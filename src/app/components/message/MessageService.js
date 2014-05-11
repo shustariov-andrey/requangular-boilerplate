@@ -36,6 +36,9 @@ define([
       };
 
       this.getActiveMessage = function() {
+         if (!activeMessage && messages.length) {
+            activeMessage = messages[0];
+         }
          return activeMessage;
       };
    }]);

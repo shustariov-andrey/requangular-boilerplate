@@ -1,5 +1,5 @@
 <ul class="message_list">
-    <li ng-repeat="message in messages" class="item">
+    <li ng-repeat="message in getMessages()" class="item">
         <a ng-click="activate(message)" ng-class="{'active' : getActiveMessage() == message}" ng-bind="message.title"></a>
     </li>
 </ul>
