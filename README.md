@@ -16,7 +16,7 @@ bower install
 grunt build # lint, run tests, optimize with r.js and put everything into /out folder
 ```
 
-Applicaiton must be served over HTTP (For simplicity I would recommend [http-server](https://www.npmjs.org/package/http-server)) in most cases to work. Navigate to [http://localhost:8080/src/#/]() (or http://localhost:8080/out/#/ for compiled version). You should see demo messages application
+Applicaiton must be served over HTTP (For simplicity I would recommend [http-server](https://www.npmjs.org/package/http-server)) in most cases to work. Navigate to [http://localhost:8080/src/#/](http://localhost:8080/src/#/) (or [http://localhost:8080/out/#/](http://localhost:8080/out/#/) for compiled version). You should see demo messages application
 
 ## Features ##
 
