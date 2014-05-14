@@ -12,7 +12,7 @@ define([
       register : function(statesArray) {
          ngModule.config(['$stateProvider', function($stateProvider) {
             _.each(statesArray, function(state) {
-               logger.trace('Registering state: ' + state.name);
+               logger.trace('Registered state: ' + state.name);
                $stateProvider.state(state.name, state.body);
             });
          }]);

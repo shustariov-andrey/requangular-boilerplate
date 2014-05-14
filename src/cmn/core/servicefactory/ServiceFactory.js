@@ -8,6 +8,8 @@ define([
 ], function(module, LoggerFactory, Config, EntityRegistry, ngModule, _) {
    'use strict';
 
+   var serviceFactoryLogger = LoggerFactory.getInstance(module.id);
+
    return {
       register : function(moduleName, serviceArray) {
          if (!(serviceArray instanceof Array)) {
@@ -16,7 +18,6 @@ define([
 
          var serviceLogger = LoggerFactory.getInstance(moduleName);
          var serviceName = _.last(moduleName.split('\/'));
-         serviceLogger.trace('Register start');
 
          var serviceFn = serviceArray.pop();
 
@@ -27,7 +28,7 @@ define([
             this.EntityRegistry = EntityRegistry;
             serviceFn.apply(this, arguments);
          }));
-         serviceLogger.trace('Register end');
+         serviceFactoryLogger.trace('Registered service: ' + moduleName.replace(/\//g, '.').replace(/^src\./, ''));
       }
    };
 });

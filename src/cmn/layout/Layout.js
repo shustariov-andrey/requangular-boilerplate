@@ -16,8 +16,6 @@ define([
       }
    }]);
 
-   LayoutManager.setDefaultUrl('/');
-
    ngModule.run(['$rootScope', function($rootScope) {
 
       _.each(['$stateChangeStart', '$stateChangeSuccess'], function(eventName) {

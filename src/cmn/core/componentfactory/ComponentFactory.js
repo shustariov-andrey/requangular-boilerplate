@@ -8,6 +8,8 @@ define([
 ], function(module, angular, ngModule, LoggerFactory, Config, _) {
    'use strict';
 
+   var componentFactoryLogger = LoggerFactory.getInstance(module.id);
+
    return {
       register : function(moduleName, options) {
          var controller = options.controller;
@@ -17,7 +19,6 @@ define([
          }
 
          var logger = LoggerFactory.getInstance(moduleName);
-         logger.trace('Register start');
          var componentName = _.last(moduleName.split('\/'));
 
          var controllerFn = controller.pop();
@@ -52,7 +53,8 @@ define([
                }
             };
          }]);
-         logger.trace('Register end');
+
+         componentFactoryLogger.trace('Registered component: ' + moduleName.replace(/\//g, '.').replace(/^src\./, ''));
       }
    };
 });

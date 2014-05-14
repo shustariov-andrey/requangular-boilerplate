@@ -25,7 +25,7 @@ define([
          }
       ]);
 
-      var activeMessage = messages[0];
+      var activeMessage/* = messages[0]*/;
 
       this.getMessages = function() {
          return messages;
