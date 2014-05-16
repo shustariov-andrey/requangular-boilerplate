@@ -89,7 +89,7 @@ Component factory will generate ```<my-component></my-component>``` directive, w
 
 In addition, Config, component-specific instance of logger and lodash are injected into $scope injectable, if it is present in controller.
 
-## Config ##
+### Config ###
 
 Facade for accessing to application configuration, that may be specfied as:
 
