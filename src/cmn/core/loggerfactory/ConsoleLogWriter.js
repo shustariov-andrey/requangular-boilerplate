@@ -16,12 +16,12 @@ define(function() {
       /**
        *
        * @param {LogLevel} logLevel
-       * @param {String} message
+       * @param {Array<String>} messages
        */
-      write : function (logLevel, message) {
+      write : function (logLevel, messages) {
          var consoleMethodName = logLevelToConsoleMethodMap[logLevel.key] in window.console ?
             logLevelToConsoleMethodMap[logLevel.key] : defaultConsoleMethod;
-         return window.console[consoleMethodName].apply(window.console, message);
+         return window.console[consoleMethodName].apply(window.console, messages);
       }
    };
 });
