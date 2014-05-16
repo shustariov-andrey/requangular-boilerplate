@@ -21,7 +21,7 @@ define(function() {
       write : function (logLevel, message) {
          var consoleMethodName = logLevelToConsoleMethodMap[logLevel.key] in window.console ?
             logLevelToConsoleMethodMap[logLevel.key] : defaultConsoleMethod;
-         return window.console[consoleMethodName](message);
+         return window.console[consoleMethodName].apply(window.console, message);
       }
    };
 });

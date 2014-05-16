@@ -28,7 +28,7 @@ define([
             this.EntityRegistry = EntityRegistry;
             serviceFn.apply(this, arguments);
          }));
-         serviceFactoryLogger.trace('Registered service: ' + moduleName.replace(/\//g, '.').replace(/^src\./, ''));
+         serviceFactoryLogger.trace('Registered service:', moduleName.replace(/\//g, '.').replace(/^src\./, ''));
       }
    };
 });

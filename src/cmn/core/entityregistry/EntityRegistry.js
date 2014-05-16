@@ -23,7 +23,6 @@ define([
     */
    function register(options) {
       var name = options.name;
-      logger.trace('Registering entity <' + name + '>');
 
       /*jshint evil : true*/
       var prototype = new Function(
@@ -74,7 +73,7 @@ define([
          descriptors : fieldsDescriptors,
          options : fieldOptions
       };
-      logger.trace('Entity <' + name + '> registered');
+      logger.trace('Registered entity:', name);
       return registry[name];
    }
    

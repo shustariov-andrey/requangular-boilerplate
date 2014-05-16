@@ -54,7 +54,7 @@ define([
             };
          }]);
 
-         componentFactoryLogger.trace('Registered component: ' + moduleName.replace(/\//g, '.').replace(/^src\./, ''));
+         componentFactoryLogger.trace('Registered component:', moduleName.replace(/\//g, '.').replace(/^src\./, ''));
       }
    };
 });

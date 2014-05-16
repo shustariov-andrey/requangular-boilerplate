@@ -20,29 +20,16 @@ define([
 
       _.each(['$stateChangeStart', '$stateChangeSuccess'], function(eventName) {
          $rootScope.$on(eventName, function(event, toState, toParams, fromState, fromParams) {
-            logger.trace(
-               event.name,
-               'to   : ' + toState.name + ' ' + JSON.stringify(toParams),
-               (fromState && fromState.name) ? ('from : ' + fromState.name + ' ' + JSON.stringify(fromParams)) : ''
-            );
+            logger.trace(event.name, toState.name, toParams, fromState.name, fromParams);
          });
       });
 
       $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-         logger.error(
-            event.name,
-            'to   : ' + toState.name + ' ' + JSON.stringify(toParams),
-            (fromState && fromState.name) ? ('from : ' + fromState.name + ' ' + JSON.stringify(fromParams)) : '',
-            'Error: ' + error.name + '\n' + error.message
-         );
+         logger.error(event.name, toState.name, toParams, fromState.name, fromParams, error);
       });
 
       $rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams) {
-         logger.error(
-            event.name,
-            'to   : ' + unfoundState.to + ' ' + JSON.stringify(unfoundState.toParams),
-            (fromState && fromState.name) ? ('from : ' + fromState.name + ' ' + JSON.stringify(fromParams)) : ''
-         );
+         logger.error(event.name, unfoundState, fromState.name, fromParams);
       });
    }]);
 });
