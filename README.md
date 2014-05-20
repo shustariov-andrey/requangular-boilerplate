@@ -89,11 +89,12 @@ Component factory will generate ```<my-component></my-component>``` directive, w
 
 In addition, Config, component-specific instance of logger and lodash are injected into $scope injectable, if it is present in controller.
 
-## Config ##
+### Config ###
 
 Facade for accessing to application configuration, that may be specfied as:
-1. URL search part parms, that match following pattern: ```?config.Core.LogLevel=DEBUG&config.MyConfigParam=42...```
-2. config/config.json file. Previous configuration may also be specified in file like this:
+
+* URL search part parms, that match following pattern: ```?config.Core.LogLevel=DEBUG&config.MyConfigParam=42...```
+* ```config/config.json``` file. Previous configuration may also be specified in file like this:
 ```JSON
 {
     "Core" : {
@@ -102,7 +103,7 @@ Facade for accessing to application configuration, that may be specfied as:
     "MyConfParam" : 42
 }
 ```
-3. Hardcoded predefined default value in [Config.js module](./src/cmn/core/config/Config.js#L7)
+* Hardcoded predefined default value in [Config.js module](./src/cmn/core/config/Config.js#L7)
 
 Configuration is generated during applicaiton bootstrap from all sources and has the same priority as specified in above list. Config object is injected into ```$scope``` of components controller or in ```this``` of service function for ease of access. To get configuration option use ```getConfig()``` method.
 
