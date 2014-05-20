@@ -4,7 +4,7 @@ define([
    'use strict';
 
    LayoutManager.register([{
-      name : 'application.message',
+      name : 'message',
       body : {
          url : '/',
          views : {
@@ -17,4 +17,6 @@ define([
          }
       }
    }]);
+
+   LayoutManager.setDefaultUrl('/');
 });

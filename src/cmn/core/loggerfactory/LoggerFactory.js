@@ -14,8 +14,7 @@ define([
 
       function enhancedLogFn () {
          var args = Array.prototype.slice.call(arguments);
-         var argsJoined = args.join('\n\t');
-         var message = logFormatter.format(argsJoined, level, className);
+         var message = logFormatter.format(args, level, className);
 
          return logWriter.write(level, message);
       }
@@ -24,7 +23,7 @@ define([
    }
 
    /**
-    * Generates class-specific logger instance with classname
+    * Generates class-specific logger instance with class name
     * only
     *
     * @param {String} module

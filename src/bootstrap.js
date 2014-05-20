@@ -16,6 +16,7 @@ requirejs([
          'src/cmn/module',
          'src/app/module'
       ],function(angular, app, LoggerFactory, ServiceFactory, ComponentFactory, EntityRegistry, LayoutManager) {
+         var logger = LoggerFactory.getInstance('bootstrap');
          if (Config.getConfig('Core.Expose')) {
             window.core = {
                LoggerFactory : LoggerFactory,
@@ -26,7 +27,10 @@ requirejs([
             };
          }
 
+         logger.trace('start');
+         logger.info('UserAgent', window.navigator.userAgent);
          angular.bootstrap(document, [app.name]);
+         logger.trace('end');
       });
    });
 });

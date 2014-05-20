@@ -36,7 +36,6 @@ define([
                      var index = _.indexOf(controller, '$scope');
 
                      arguments[index].logger = logger;
-                     arguments[index]._ = _;
                      arguments[index].Config = Config;
                   }
                   controllerFn.apply(this, arguments);
@@ -54,7 +53,7 @@ define([
             };
          }]);
 
-         componentFactoryLogger.trace('Registered component: ' + moduleName.replace(/\//g, '.').replace(/^src\./, ''));
+         componentFactoryLogger.trace('Registered component:', moduleName.replace(/\//g, '.').replace(/^src\./, ''));
       }
    };
 });

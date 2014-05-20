@@ -23,12 +23,11 @@ define([
 
          ngModule.service(serviceName, serviceArray.concat(function() {
             this.logger = serviceLogger;
-            this._ = _;
             this.Config = Config;
             this.EntityRegistry = EntityRegistry;
             serviceFn.apply(this, arguments);
          }));
-         serviceFactoryLogger.trace('Registered service: ' + moduleName.replace(/\//g, '.').replace(/^src\./, ''));
+         serviceFactoryLogger.trace('Registered service:', moduleName.replace(/\//g, '.').replace(/^src\./, ''));
       }
    };
 });

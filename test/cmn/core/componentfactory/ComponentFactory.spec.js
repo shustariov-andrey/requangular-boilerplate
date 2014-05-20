@@ -46,7 +46,6 @@ define([
          $compile(element)($scope);
          $scope.$digest();
          expect($scope.logger).toBeDefined();
-         expect($scope._).toBeDefined();
          expect($scope.Config).toBeDefined();
       });
    });
