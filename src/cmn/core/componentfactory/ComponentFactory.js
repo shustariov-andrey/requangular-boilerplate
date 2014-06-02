@@ -20,14 +20,19 @@ define([
 
          var logger = LoggerFactory.getInstance(moduleName);
          var componentName = _.last(moduleName.split('\/'));
+         if (componentName !== 'Application') {
+            componentName = (Config.getConfig('NamePrefix') || '') + componentName;
+         } else {
+            componentName = componentName[0].toLowerCase() + componentName.substring(1);
+         }
 
          var controllerFn = controller.pop();
 
-         ngModule.directive(componentName[0].toLowerCase() + componentName.substring(1), [function() {
+         ngModule.directive(componentName, [function() {
             return {
                priority : options.priority,
                template : template,
-               replace : ('replace' in options) ? !!options.replace : true,
+               replace : false,//('replace' in options) ? !!options.replace : true,
                transclude : options.transclude,
                restrict : options.restrict || 'E',
                scope : options.scope || false,

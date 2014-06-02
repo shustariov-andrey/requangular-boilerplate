@@ -15,13 +15,13 @@ define([
       };
 
       function registerTestService (service) {
-         ServiceFactory.register('test_service', service);
+         ServiceFactory.register('TestService', service);
       }
 
       it('should register angular services', function() {
          registerTestService([testService]);
          var $injector =  angular.injector(['ngModule']);
-         var service = $injector.get('test_service');
+         var service = $injector.get('TestService');
 
          expect(service).toBeDefined();
          expect(typeof service.testMethod).toEqual('function');
@@ -31,7 +31,7 @@ define([
       it('should inject generic components into services', function() {
          registerTestService([testService]);
          var $injector =  angular.injector(['ngModule']);
-         var service = $injector.get('test_service');
+         var service = $injector.get('TestService');
 
          expect(service.logger).toBeDefined();
          expect(service.EntityRegistry).toBeDefined();

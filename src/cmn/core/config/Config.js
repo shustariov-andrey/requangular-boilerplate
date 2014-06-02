@@ -8,7 +8,9 @@ define([
       Core : {
          LogLevel : 'INFO',
          Expose : true
-      }
+      },
+      IgnoreConfigFile : false,
+      NamePrefix : 'ra'
    };
 
    var config = {};
@@ -17,7 +19,7 @@ define([
     * Parse object with provided expression and return corresponding value or undefined;
     *
     * @param {object} object which will be parsed with expression
-    * @param {string} expression string of follwing format: 'Key1.SubKey2.AnotherSubKey6'
+    * @param {string} expression string of following format: 'Key1.SubKey2.AnotherSubKey6'
     */
    function parseExpression(object, expression) {
 
@@ -75,14 +77,20 @@ define([
          callback({});
       });
    }
+
    function init(callback, path, location) {
-      path = path || 'config/config.json';
       location = location || window.location;
-      readConfigFile(path, function(fileConfig) {
-         var urlParmas = parseUrl(location);
-         config = _.merge(defaultConfig, fileConfig, urlParmas);
+      var urlParams = parseUrl(location);
+      if (urlParams && urlParams.IgnoreConfigFile) {
+         config = _.merge(defaultConfig, urlParams);
          callback(config);
-      });
+      } else {
+         path = path || 'config/config.json';
+         readConfigFile(path, function (fileConfig) {
+            config = _.merge(defaultConfig, fileConfig, urlParams);
+            callback(config);
+         });
+      }
    }
 
    /**
@@ -101,7 +109,7 @@ define([
 
       var obj = _.reduce(configParams, function(result, current) {
          var key = current.split('=')[0];
-         var value = current.split('=')[1];
+         var value = decodeURIComponent(current.split('=')[1]);
          if (value === 'false') {
             value = false;
          } else if (value === 'true') {

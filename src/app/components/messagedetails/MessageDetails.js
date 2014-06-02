@@ -7,9 +7,9 @@ define([
 
    ComponentFactory.register(module.id, {
       template : template,
-      controller : ['$scope', 'MessageService', function($scope, MessageService) {
+      controller : ['$scope', 'raMessageService', function($scope, raMessageService) {
          $scope.getActiveMessage = function() {
-            return MessageService.getActiveMessage();
+            return raMessageService.getActiveMessage();
          };
       }]
    });

@@ -3,11 +3,11 @@ define([
    'src/cmn/core/config/module'
 ], function(module, Config) {
    'use strict';
-   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false, waitsFor : false, runs : false*/
+   /*global describe : false, beforeEach : false, inject : false, it : false, xit : false, expect : false, waitsFor : false, runs : false*/
 
    describe(module.id, function () {
 
-      it('should read test configuration', function() {
+      xit('should read test configuration', function() {
          var initComplete = false;
 
          runs(function() {
@@ -28,7 +28,7 @@ define([
          });
       });
 
-      it('should stub missing configuration', function() {
+      xit('should stub missing configuration', function() {
          var initComplete = false, result, defaultResult = Config.getConfig();
 
          runs(function() {

@@ -21,7 +21,7 @@ define([
 
          var serviceFn = serviceArray.pop();
 
-         ngModule.service(serviceName, serviceArray.concat(function() {
+         ngModule.service((Config.getConfig('NamePrefix') || '') + serviceName, serviceArray.concat(function() {
             this.logger = serviceLogger;
             this.Config = Config;
             this.EntityRegistry = EntityRegistry;

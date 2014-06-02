@@ -9,10 +9,10 @@ define([
          url : '/',
          views : {
             list : {
-               template : '<message-list></message-list>'
+               template : '<ra-message-list></ra-message-list>'
             },
             details : {
-               template : '<message-details></message-details>'
+               template : '<ra-message-details></ra-message-details>'
             }
          }
       }
