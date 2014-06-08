@@ -15,23 +15,26 @@
       }
    });
 
-   require.config({
-
+   var config = {
+      context : 'squire',
       baseUrl : '/base',
       paths : {
-         'angular-mocks' : 'bower_components/angular-mocks/angular-mocks'
+         'angular-mocks' : 'bower_components/angular-mocks/angular-mocks',
+         Squire : 'bower_components/squire/src/Squire'
       },
       shim : {
          'angular-mocks' : {
             exports : 'angular',
             deps : ['angular']
          }
-      },
+      }
+   };
 
-      // dynamically load all test files
-      deps : allTestFiles,
+   require.config(config);
 
-      // we have to kickoff jasmine, as it is asynchronous
-      callback : window.__karma__.start
-   });
+   config.context = '_';
+   config.deps = allTestFiles;
+   config.callback = window.__karma__.start;
+
+   require.config(config);
 }());

@@ -7,7 +7,7 @@ requirejs([
    Config.init(function() {
       requirejs([
          'angular',
-         'src/ngModule',
+         'src/cmn/ngModule',
          'src/cmn/core/loggerfactory/module',
          'src/cmn/core/servicefactory/module',
          'src/cmn/core/componentfactory/module',

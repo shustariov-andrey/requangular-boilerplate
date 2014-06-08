@@ -1,4 +1,4 @@
-requirejs.config({
+var config = {
    baseUrl : '../',
    paths : {
       angular             : 'bower_components/angular/angular',
@@ -33,4 +33,9 @@ requirejs.config({
    less : {
       logLevel : 1
    }
-});
+};
+
+requirejs.config(config);
+
+config.context = 'squire';
+requirejs.config(config);

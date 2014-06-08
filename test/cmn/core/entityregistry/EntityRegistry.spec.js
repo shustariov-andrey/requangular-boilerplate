@@ -1,11 +1,22 @@
 define([
    'module',
-   'src/cmn/core/entityregistry/module'
-], function(module, EntityRegistry) {
+   'Squire'
+], function(module, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false*/
+   /*global describe : false, beforeEach : false, afterEach : false, it : false, expect : false*/
 
    describe(module.id, function() {
+      var injector = new Squire('squire'), EntityRegistry, deps = ['src/cmn/core/entityregistry/module'];
+
+      beforeEach(injector.run(deps, function(_EntityRegistry) {
+            EntityRegistry = _EntityRegistry;
+         }
+      ));
+
+      afterEach(function() {
+         injector.clean(deps);
+      });
+
       it('should register entity', function() {
 
          EntityRegistry.register({

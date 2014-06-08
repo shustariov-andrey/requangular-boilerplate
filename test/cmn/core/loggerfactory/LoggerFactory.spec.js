@@ -1,19 +1,31 @@
 define([
    'module',
-   'src/cmn/core/loggerfactory/LoggerFactory',
-   'src/cmn/core/loggerfactory/LogLevel'
-], function(module, LoggerFactory, LogLevel) {
+   'Squire'
+], function(module, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false*/
+   /*global describe : false, beforeEach : false, afterEach : false, it : false, expect : false*/
 
    describe(module.id, function() {
-      var loggerInstance;
+      var loggerInstance, injector = new Squire('squire'), LogLevel, LoggerFactory, deps = [
+         'src/cmn/core/loggerfactory/LoggerFactory',
+         'src/cmn/core/loggerfactory/LogLevel'
+      ];
 
       var testLogWriter = {
          write : function(logLevel, message) {
             return message;
          }
       };
+
+      beforeEach(injector.run(deps, function(_LoggerFactory, _LogLevel) {
+            LoggerFactory = _LoggerFactory;
+            LogLevel = _LogLevel;
+         }
+      ));
+
+      afterEach(function() {
+         injector.clean(deps);
+      });
 
       it('should consider log level', function() {
          LoggerFactory.setLogLevel(LogLevel.INFO);

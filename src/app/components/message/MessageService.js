@@ -10,22 +10,24 @@ define([
     */
    ServiceFactory.register(module.id, [function() {
 
-      var messages = this.EntityRegistry.create('Message', [
-         {
-            title : 'message 1',
-            message : 'some additional info'
-         },
-         {
-            title : 'Hello, world',
-            message : 'Hello world is output example'
-         },
-         {
-            title : 'Another message',
-            message : 'Another description'
-         }
-      ]);
+      var activeMessage, messages = [];
 
-      var activeMessage/* = messages[0]*/;
+      this.onInit = function() {
+         messages = this.EntityRegistry.create('Message', [
+            {
+               title : 'message 1',
+               message : 'some additional info'
+            },
+            {
+               title : 'Hello, world',
+               message : 'Hello world is output example'
+            },
+            {
+               title : 'Another message',
+               message : 'Another description'
+            }
+         ]);
+      };
 
       this.getMessages = function() {
          return messages;

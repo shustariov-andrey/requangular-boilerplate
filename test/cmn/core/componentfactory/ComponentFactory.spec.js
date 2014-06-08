@@ -1,10 +1,10 @@
 define([
    'module',
    'angular-mocks',
-   'src/cmn/core/componentfactory/module'
-], function(module, angular, ComponentFactory) {
+   'Squire'
+], function(module, angular, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false*/
+   /*global describe : false, beforeEach : false, afterEach : false, it : false, expect : false*/
 
    describe(module.id, function() {
 
@@ -22,11 +22,20 @@ define([
          }]
       };
 
-      var controllerContext;
+      var controllerContext, injector = new Squire('squire'), ComponentFactory, deps = ['src/cmn/core/componentfactory/module'];
 
       function registerTestComponent(name, component) {
          ComponentFactory.register(name, component);
       }
+
+      beforeEach(injector.run(deps, function(_ComponentFactory) {
+            ComponentFactory = _ComponentFactory;
+         }
+      ));
+
+      afterEach(function() {
+         injector.clean(deps);
+      });
 
 
       it('should fail, when controller is not in array format', function() {

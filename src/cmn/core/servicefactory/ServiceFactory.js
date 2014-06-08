@@ -2,13 +2,23 @@ define([
    'module',
    'src/cmn/core/loggerfactory/module',
    'src/cmn/core/config/module',
-   'src/cmn/core/entityregistry/module',
-   'src/ngModule',
-   'lodash'
-], function(module, LoggerFactory, Config, EntityRegistry, ngModule, _) {
+   'src/cmn/ngModule',
+   'lodash',
+   'src/cmn/core/servicefactoryaugmentermanager/module',
+], function(module, LoggerFactory, Config, ngModule, _, ServiceFactoryAugmenterManager) {
    'use strict';
 
    var serviceFactoryLogger = LoggerFactory.getInstance(module.id);
+   var registry = [];
+
+   ngModule.run(['$injector', function($injector) {
+      _.each(registry, function (serviceName) {
+         var service = $injector.get(serviceName);
+         if (_.isFunction(service.onInit)) {
+            service.onInit.call(service);
+         }
+      });
+   }]);
 
    return {
       register : function(moduleName, serviceArray) {
@@ -16,18 +26,36 @@ define([
             throw new Error('Service function must be provided in array form');
          }
 
-         var serviceLogger = LoggerFactory.getInstance(moduleName);
-         var serviceName = _.last(moduleName.split('\/'));
-
          var serviceFn = serviceArray.pop();
 
-         ngModule.service((Config.getConfig('NamePrefix') || '') + serviceName, serviceArray.concat(function() {
-            this.logger = serviceLogger;
-            this.Config = Config;
-            this.EntityRegistry = EntityRegistry;
+         if (!(serviceFn instanceof Function)) {
+            throw new Error('Last element of service array should be function');
+         }
+
+         var canonicalModuleId = moduleName.replace(/\//g, '.').replace(/^src\./, '');
+         var serviceName = (Config.getConfig('NamePrefix') || '') + _.last(canonicalModuleId.split('.'));
+
+         var injectorIndex = serviceArray.indexOf('$injector');
+         if (injectorIndex === -1) {
+            injectorIndex = serviceArray.length;
+            serviceArray.push('$injector');
+         }
+
+         ngModule.service(serviceName, serviceArray.concat(function() {
+            this.canonicalModuleId = canonicalModuleId;
+            this.serviceName = serviceName;
+            this.$injector = Array.prototype.slice.call(arguments, injectorIndex, injectorIndex + 1)[0];
             serviceFn.apply(this, arguments);
          }));
-         serviceFactoryLogger.trace('Registered service:', moduleName.replace(/\//g, '.').replace(/^src\./, ''));
+         ServiceFactoryAugmenterManager.addAugmented({serviceName : serviceName, canonicalModuleId : canonicalModuleId});
+
+         registry.push(serviceName);
+
+         serviceFactoryLogger.trace('Registered service:', canonicalModuleId);
+      },
+
+      getRegistry : function() {
+         return registry;
       }
    };
 });

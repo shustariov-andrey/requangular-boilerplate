@@ -1,18 +1,29 @@
 define([
    'module',
-   'angular',
-   'src/app/components/message/MessageService',
-   'src/app/domain/module',
-], function(module, angular) {
+   'angular-mocks',
+   'Squire'
+], function(module, angular, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false*/
+   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false, xit : false, afterEach : false*/
 
    describe(module.id, function() {
-      var service;
-      beforeEach(function() {
-         var $injector = angular.injector(['ngModule']);
-         service = $injector.get('MessageService');
+      var service, injector = new Squire('squire'), deps = [
+         'src/cmn/augmenters/module',
+         'src/app/components/message/MessageService',
+         'src/app/domain/module'
+      ];
+
+      beforeEach(injector.run(deps, angular.noop));
+
+      afterEach(function() {
+         injector.clean(deps);
       });
+
+      beforeEach(angular.mock.module('ngModule'));
+
+      beforeEach(angular.mock.inject(function(_MessageService_) {
+         service = _MessageService_;
+      }));
 
       it('should contain 3 messages at start', function() {
          expect(service.getMessages().length).toEqual(3);

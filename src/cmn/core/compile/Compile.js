@@ -1,6 +1,6 @@
 define([
    'module',
-   'src/ngModule'
+   'src/cmn/ngModule'
 ], function(module, ngModule) {
    'use strict';
 

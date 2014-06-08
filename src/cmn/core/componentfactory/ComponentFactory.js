@@ -1,7 +1,7 @@
 define([
    'module',
    'angular',
-   'src/ngModule',
+   'src/cmn/ngModule',
    'src/cmn/core/loggerfactory/module',
    'src/cmn/core/config/module',
    'lodash'

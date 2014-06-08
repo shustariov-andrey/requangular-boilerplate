@@ -1,22 +1,37 @@
 define([
    'module',
-   'angular',
-   'src/cmn/core/config/module',
-   'src/cmn/components/application/module'
-], function(module, angular, Config) {
+   'angular-mocks',
+   'Squire'
+], function(module, angular, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false, waitsFor : false, runs : false*/
+   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false, afterEach : false*/
 
    describe(module.id, function () {
 
-      var $compile, $scope;
+      var $compile, $scope, injector = new Squire('squire'), Config;
 
-      beforeEach(function() {
-         var $injector = angular.injector(['ngModule']);
-         var $rootScope = $injector.get('$rootScope');
-         $compile = $injector.get('$compile');
-         $scope = $rootScope.$new();
+      beforeEach(injector.run([
+            'src/cmn/core/config/module',
+            'src/cmn/components/application/module'
+         ], function(_Config) {
+            Config = _Config;
+         }
+      ));
+
+      afterEach(function() {
+         injector.clean([
+            'src/cmn/core/config/module',
+            'src/cmn/components/application/module'
+         ]);
       });
+
+      beforeEach(angular.mock.module('ngModule'));
+
+      beforeEach(angular.mock.inject(function(_$rootScope_, _$compile_) {
+         var $rootScope = _$rootScope_;
+         $compile = _$compile_;
+         $scope = $rootScope.$new();
+      }));
 
       it('should read main component name and title from config', function() {
          Config.setConfig({MainComponentName : 'test', ApplicationTitle : 'title'});
