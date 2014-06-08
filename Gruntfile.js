@@ -31,7 +31,7 @@ module.exports = function(grunt){
                mainConfigFile : ['src/main.js'],
                out : '<%= destinationFolder %>/cmn-built.js',
                optimize : 'uglify2',
-               generateSourceMaps : true,
+               generateSourceMaps : false,
                preserveLicenseComments : false,
                inlineText : true,
                findNestedDependencies : true,
@@ -56,12 +56,38 @@ module.exports = function(grunt){
                mainConfigFile : ['src/main.js', 'src/app/main.js'],
                out : '<%= destinationFolder %>/app-built.js',
                optimize : 'uglify2',
-               generateSourceMaps : true,
+               generateSourceMaps : false,
                preserveLicenseComments : false,
                inlineText : true,
                findNestedDependencies : true,
                exclude : [
                   'src/cmn/module'
+               ]
+            }
+         },
+         all : {
+            options : {
+               waitSeconds : 0,
+               baseUrl : '.',
+               name : 'src/bootstrap',
+               mainConfigFile : ['src/main.js', 'src/app/main.js'],
+               out : '<%= destinationFolder %>/all-built.js',
+               optimize : 'uglify2',
+//               optimize : 'none',
+               generateSourceMaps : true,
+               preserveLicenseComments : false,
+               inlineText : true,
+               findNestedDependencies : true,
+               paths : {
+                  requireLib : 'bower_components/requirejs/require'
+               },
+               include : [
+                  'requireLib',
+                  'json'
+               ],
+               exclude : [
+                  'bower_components/require-css/normalize',
+                  'bower_components/require-less/normalize'
                ]
             }
          }
@@ -131,10 +157,10 @@ module.exports = function(grunt){
    grunt.registerTask('verify', ['jshint']);
    grunt.registerTask('test', ['karma:unit']);
    grunt.registerTask('build', [
-      'verify', 'test', 'clean', 'requirejs:cmn', 'requirejs:app', 'preprocess:web', 'copy:config'
+      'verify', 'test', 'clean', 'requirejs:all', 'preprocess:web', 'copy:config'
    ]);
    grunt.registerTask('ci-build', [
-      'verify', 'test', 'coveralls:all', 'clean', 'requirejs:cmn', 'requirejs:app', 'preprocess:web', 'copy:config'
+      'verify', 'test', 'coveralls:all', 'clean', 'requirejs:all', 'preprocess:web', 'copy:config'
    ]);
 
    // Default task.

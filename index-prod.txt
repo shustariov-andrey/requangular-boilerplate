@@ -1,2 +1,1 @@
-<script src="cmn-built.js"></script>
-<script src="app-built.js"></script>
+<script src="all-built.js"></script>

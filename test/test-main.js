@@ -15,6 +15,12 @@
       }
    });
 
+   var currConfig = require.s.contexts._.config;
+   currConfig.context = 'squire';
+
+   // Duplicating configuration for Squire
+   require.config(currConfig);
+
    var config = {
       context : 'squire',
       baseUrl : '/base',
@@ -30,6 +36,7 @@
       }
    };
 
+   // Duplicating configuration for Squire
    require.config(config);
 
    config.context = '_';

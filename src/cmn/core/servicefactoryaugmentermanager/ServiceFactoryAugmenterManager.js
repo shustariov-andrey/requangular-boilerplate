@@ -13,22 +13,23 @@ define([
 
    trueFunc = function(){return true;};
 
-   ngModule.config(['$provide', function($provide) {
+   ngModule.run(['$injector', function($injector) {
       _.each(augmentedServices, function(augmented) {
-         $provide.decorator(augmented.serviceName, function($delegate) {
-            _.each(augmenters, function(augmenter) {
-               if (!!augmenter.selector) {
-                  if (augmenter.selector($delegate)) {
-                     logger.trace('Augmenting service:', augmented.canonicalModuleId, 'with', augmenter.moduleName);
-                     $delegate = augmenter.augmenter($delegate, augmented);
-                  }
-               } else {
+//         $provide.decorator(augmented.serviceName, function($delegate) {
+         var $delegate = $injector.get(augmented.serviceName);
+         _.each(augmenters, function(augmenter) {
+            if (!!augmenter.selector) {
+               if (augmenter.selector($delegate)) {
                   logger.trace('Augmenting service:', augmented.canonicalModuleId, 'with', augmenter.moduleName);
-                  $delegate = augmenter.augmenter($delegate);
+                  $delegate = augmenter.augmenter($delegate, augmented);
                }
-            });
-            return $delegate;
+            } else {
+               logger.trace('Augmenting service:', augmented.canonicalModuleId, 'with', augmenter.moduleName);
+               $delegate = augmenter.augmenter($delegate);
+            }
          });
+//         return $delegate;
+//         });
       });
    }]);
 
