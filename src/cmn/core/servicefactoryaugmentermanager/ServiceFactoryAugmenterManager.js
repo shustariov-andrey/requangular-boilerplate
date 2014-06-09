@@ -15,21 +15,13 @@ define([
 
    ngModule.run(['$injector', function($injector) {
       _.each(augmentedServices, function(augmented) {
-//         $provide.decorator(augmented.serviceName, function($delegate) {
          var $delegate = $injector.get(augmented.serviceName);
          _.each(augmenters, function(augmenter) {
-            if (!!augmenter.selector) {
-               if (augmenter.selector($delegate)) {
-                  logger.trace('Augmenting service:', augmented.canonicalModuleId, 'with', augmenter.moduleName);
-                  $delegate = augmenter.augmenter($delegate, augmented);
-               }
-            } else {
+            if (augmenter.selector($delegate)) {
                logger.trace('Augmenting service:', augmented.canonicalModuleId, 'with', augmenter.moduleName);
-               $delegate = augmenter.augmenter($delegate);
+               $delegate = augmenter.augmenter($delegate, augmented);
             }
          });
-//         return $delegate;
-//         });
       });
    }]);
 
@@ -45,6 +37,11 @@ define([
 
       addAugmented : function(serviceName) {
          augmentedServices.push(serviceName);
+      },
+
+      clean : function() {
+         augmenters = [];
+         augmentedServices = [];
       }
    };
 });
