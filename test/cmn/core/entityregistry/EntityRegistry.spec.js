@@ -17,8 +17,7 @@ define([
          injector.clean(deps);
       });
 
-      it('should register entity', function() {
-
+      beforeEach(function() {
          EntityRegistry.register({
             name : 'Person',
             fields : [
@@ -58,7 +57,13 @@ define([
                }
             ]
          });
+      });
 
+      afterEach(function() {
+         EntityRegistry.clean();
+      });
+
+      it('should register entity', function() {
          expect(EntityRegistry.getClassByName('Person')).toBeDefined();
          expect(EntityRegistry.getRegistry().Student).toBeDefined();
       });

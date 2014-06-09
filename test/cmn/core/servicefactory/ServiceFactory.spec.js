@@ -54,5 +54,16 @@ define([
          }
          expect(f).toThrow();
       });
+
+      it('should fail, when service array has no function', function() {
+         function f () {
+            registerTestService(['dep1', 'dep2']);
+         }
+         expect(f).toThrow();
+      });
+
+      it('getRegistry() should return registry array', function () {
+         expect(ServiceFactory.getRegistry() instanceof Array).toBeTruthy();
+      });
    });
 });

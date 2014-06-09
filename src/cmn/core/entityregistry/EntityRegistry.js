@@ -47,6 +47,7 @@ define([
                return this['_' + fieldName];
             },
             set : function(newValue) {
+               validate(newValue, fieldName, name);
                this['_' + fieldName] = newValue;
             }
          };
@@ -93,26 +94,10 @@ define([
 
       _.each(fieldsArray, function(fields) {
 
-         // validation
-
+         // set null for empty values for proper validation
          _.forIn(fieldOptions, function(options, fieldName) {
-            if (options.required && !fields[fieldName]) {
-               throw new Error ('Required field ' + fieldName + ' is not specified for entity ' + entityName);
-            }
-            if (options.type && fields[fieldName]) {
-               if (_.contains(typeofResults, options.type)) {
-                  if (typeof(fields[fieldName]) !== options.type) {
-                     throw new Error('Field ' + fieldName + ' has incorrect type ' + typeof(fields[fieldName]) + '. ' +
-                        options.type + ' is expected');
-                  }
-               } else if (registry[options.type]) {
-                  var entity = registry[options.type];
-                  if (!(fields[fieldName] instanceof entity.prototype)) {
-                     throw new Error('Field ' + fieldName + ' has incorrect class. ' + options.type + ' is expected');
-                  }
-               } else {
-                  throw new Error('Unknown type or Entity ' + options.type);
-               }
+            if (!fields[fieldName]) {
+               fields[fieldName] = null;
             }
          });
 
@@ -126,6 +111,28 @@ define([
       });
       return result;
    }
+
+   function validate(fieldValue, fieldName, entityName) {
+      var options = registry[entityName].options[fieldName] || {};
+      if (options.required && !fieldValue) {
+         throw new Error ('Required field ' + fieldName + ' is not specified for entity ' + entityName);
+      }
+      if (options.type && fieldValue) {
+         if (_.contains(typeofResults, options.type)) {
+            if (typeof(fieldValue) !== options.type) {
+               throw new Error('Field ' + fieldName + ' has incorrect type ' + typeof(fieldValue) + '. ' +
+                  options.type + ' is expected');
+            }
+         } else if (registry[options.type]) {
+            var entity = registry[options.type];
+            if (!(fieldValue instanceof entity.prototype)) {
+               throw new Error('Field ' + fieldName + ' has incorrect class. ' + options.type + ' is expected');
+            }
+         } else {
+            throw new Error('Unknown type or Entity ' + options.type);
+         }
+      }
+   }
    
    var registry = {};
 
@@ -137,6 +144,9 @@ define([
       },
       getClassByName : function(className) {
          return registry[className];
+      },
+      clean : function() {
+         registry = {};
       }
    };
 });

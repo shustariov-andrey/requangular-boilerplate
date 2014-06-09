@@ -23,7 +23,8 @@ requirejs([
                ServiceFactory : ServiceFactory,
                ComponentFactory : ComponentFactory,
                EntityRegistry : EntityRegistry,
-               LayoutManager : LayoutManager
+               LayoutManager : LayoutManager,
+               Config : Config
             };
          }
 

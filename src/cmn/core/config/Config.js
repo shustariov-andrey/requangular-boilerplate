@@ -82,12 +82,12 @@ define([
       location = location || window.location;
       var urlParams = parseUrl(location);
       if (urlParams && urlParams.IgnoreConfigFile) {
-         config = _.merge(defaultConfig, urlParams);
+         config = _.merge({}, defaultConfig, urlParams);
          callback(config);
       } else {
          path = path || 'config/config.json';
          readConfigFile(path, function (fileConfig) {
-            config = _.merge(defaultConfig, fileConfig, urlParams);
+            config = _.merge({}, defaultConfig, fileConfig, urlParams);
             callback(config);
          });
       }
