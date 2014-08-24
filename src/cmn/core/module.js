@@ -6,7 +6,8 @@ define([
    './entityregistry/module',
    './layoutmanager/module',
    './compile/module',
-   './servicefactoryaugmentermanager/module'
+   './servicefactoryaugmentermanager/module',
+   './exceptionhandler/module'
 ], function () {
    'use strict';
 });

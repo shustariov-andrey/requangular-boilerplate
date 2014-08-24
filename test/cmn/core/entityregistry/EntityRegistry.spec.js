@@ -3,7 +3,6 @@ define([
    'Squire'
 ], function(module, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, afterEach : false, it : false, expect : false*/
 
    describe(module.id, function() {
       var injector = new Squire('squire'), EntityRegistry, deps = ['src/cmn/core/entityregistry/module'];

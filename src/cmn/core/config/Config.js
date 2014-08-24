@@ -130,11 +130,17 @@ define([
       return obj.config;
    }
 
-   return {
+   /**
+    * @class Config
+    * @type {{init: init, getConfig: getConfig, setConfig: setConfig}}
+    */
+   var Config = {
       init : init,
       getConfig : getConfig,
       setConfig : function(_config) {
          config = _config;
       }
    };
+
+   return Config;
 });

@@ -5,23 +5,22 @@ define([
    'src/cmn/ngModule',
    'lodash',
    'src/cmn/core/servicefactoryaugmentermanager/module',
-], function(module, LoggerFactory, Config, ngModule, _, ServiceFactoryAugmenterManager) {
+], function(module, LoggerFactory, Config, /**@type angular.module*/ ngModule, _, ServiceFactoryAugmenterManager) {
    'use strict';
 
    var serviceFactoryLogger = LoggerFactory.getInstance(module.id);
-   var registry = [];
 
-   ngModule.run(['$injector', function($injector) {
-      _.each(registry, function (serviceName) {
-         var service = $injector.get(serviceName);
-         if (_.isFunction(service.onInit)) {
-            service.onInit.call(service);
-         }
-      });
-   }]);
-
-   return {
-      register : function(moduleName, serviceArray) {
+   /**
+    * @class ServiceFactory
+    */
+   var ServiceFactory = {
+      /**
+       *
+       * @param {string} moduleName
+       * @param {Array<string|Function>} serviceArray
+       * @param {Array<string>} [augmentersList]
+       */
+      register : function(moduleName, serviceArray, augmentersList) {
          if (!(serviceArray instanceof Array)) {
             throw new Error('Service function must be provided in array form');
          }
@@ -43,19 +42,16 @@ define([
 
          ngModule.service(serviceName, serviceArray.concat(function() {
             this.canonicalModuleId = canonicalModuleId;
-            this.serviceName = serviceName;
             this.$injector = Array.prototype.slice.call(arguments, injectorIndex, injectorIndex + 1)[0];
             serviceFn.apply(this, arguments);
          }));
-         ServiceFactoryAugmenterManager.addAugmented({serviceName : serviceName, canonicalModuleId : canonicalModuleId});
+         if (augmentersList && augmentersList instanceof Array) {
+            ServiceFactoryAugmenterManager.augmentService(canonicalModuleId, augmentersList);
+         }
 
-         registry.push(serviceName);
-
-         serviceFactoryLogger.trace('Registered service:', canonicalModuleId);
-      },
-
-      getRegistry : function() {
-         return registry;
+         serviceFactoryLogger.trace('Registered service:', canonicalModuleId, 'as', serviceName);
       }
    };
+
+   return ServiceFactory;
 });

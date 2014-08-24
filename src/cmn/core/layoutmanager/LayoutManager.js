@@ -24,7 +24,10 @@ define([
       });
    }]);
 
-   return {
+   /**
+    * @class LayoutManager
+    */
+   var LayoutManager = {
       register : function(statesArray) {
 
          ngModule.config(['$stateProvider', function($stateProvider) {
@@ -40,4 +43,6 @@ define([
          }]);
       }
    };
+
+   return LayoutManager;
 });

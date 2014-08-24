@@ -32,7 +32,7 @@
     "forin"         : true,     // Tolerate `for in` loops without `hasOwnPrototype`.
     "immed"         : true,     // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
     "latedef"       : true,     // Prohibit variable use before definition.
-    "newcap"        : true,     // Require capitalization of all constructor functions e.g. `new F()`.
+    "newcap"        : false,     // Require capitalization of all constructor functions e.g. `new F()`.
     "noarg"         : true,     // Prohibit use of `arguments.caller` and `arguments.callee`.
     "noempty"       : true,     // Prohibit use of empty blocks.
     "nonew"         : true,     // Prohibit use of constructors for side-effects.
@@ -110,15 +110,16 @@
     // [4]: http://www.jshint.com/options/
  
     "maxerr"        : 1000,      // Maximum errors before stopping.
-    "predef"        : [         // Extra globals.
-        //"exampleVar",
-        //"anotherCoolGlobal",
-        //"iLoveDouglas"
-    ],
     "globals": {
        "define": false,
        "require": false,
-       "requirejs": false
+       "requirejs": false,
+       "describe": false,
+       "it": false,
+       "beforeEach": false,
+       "afterEach": false,
+       "expect": false
+
     },
     "indent"        : 3         // Specify indentation spacing
 }

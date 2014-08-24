@@ -136,7 +136,11 @@ define([
    
    var registry = {};
 
-   return {
+   /**
+    *
+    * @class EntityRegistry
+    */
+   var EntityRegistry = {
       register : register,
       create   : create,
       getRegistry : function() {
@@ -149,4 +153,6 @@ define([
          registry = {};
       }
    };
+
+   return EntityRegistry;
 });

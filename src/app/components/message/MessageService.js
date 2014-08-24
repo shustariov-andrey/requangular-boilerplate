@@ -1,7 +1,8 @@
 define([
    'module',
-   'src/cmn/core/servicefactory/module'
-], function(module, ServiceFactory) {
+   'src/cmn/core/servicefactory/module',
+   'src/cmn/core/entityregistry/module'
+], function(module, ServiceFactory, EntityRegistry) {
    'use strict';
 
    /**
@@ -10,24 +11,20 @@ define([
     */
    ServiceFactory.register(module.id, [function() {
 
-      var activeMessage, messages = [];
-
-      this.onInit = function() {
-         messages = this.EntityRegistry.create('Message', [
-            {
-               title : 'message 1',
-               message : 'some additional info'
-            },
-            {
-               title : 'Hello, world',
-               message : 'Hello world is output example'
-            },
-            {
-               title : 'Another message',
-               message : 'Another description'
-            }
-         ]);
-      };
+      var activeMessage, messages = EntityRegistry.create('Message', [
+         {
+            title : 'message 1',
+            message : 'some additional info'
+         },
+         {
+            title : 'Hello, world',
+            message : 'Hello world is output example'
+         },
+         {
+            title : 'Another message',
+            message : 'Another description'
+         }
+      ]);
 
       this.getMessages = function() {
          return messages;

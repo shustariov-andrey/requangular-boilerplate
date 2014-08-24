@@ -7,8 +7,8 @@ define([
 ], function(module, ServiceFactoryAugmenterManager, Config, EntityRegistry, LoggerFactory) {
    'use strict';
 
-   ServiceFactoryAugmenterManager.register(module.id, function($delegate, serviceOptions) {
-      $delegate.logger = LoggerFactory.getInstance(serviceOptions.canonicalModuleId);
+   ServiceFactoryAugmenterManager.register(module.id, function($delegate) {
+      $delegate.logger = LoggerFactory.getInstance($delegate.canonicalModuleId);
       $delegate.Config = Config;
       $delegate.EntityRegistry = EntityRegistry;
       return $delegate;

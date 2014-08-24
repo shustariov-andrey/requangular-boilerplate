@@ -10,7 +10,10 @@ define([
 
    var componentFactoryLogger = LoggerFactory.getInstance(module.id);
 
-   return {
+   /**
+    * @class ComponentFactory
+    */
+   var ComponentFactory = {
       register : function(moduleName, options) {
          var controller = options.controller;
          var template = options.template;
@@ -61,4 +64,6 @@ define([
          componentFactoryLogger.trace('Registered component:', moduleName.replace(/\//g, '.').replace(/^src\./, ''));
       }
    };
+
+   return ComponentFactory;
 });

@@ -4,7 +4,6 @@ define([
    'Squire'
 ], function(module, angular, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, afterEach : false, it : false, expect : false, spyOn : false*/
 
    describe(module.id, function() {
 
@@ -27,24 +26,14 @@ define([
 
       describe('test service', function() {
 
-         var spyObj = {
-            called : function() {}
-         };
-
          function Service() {
             this.testMethod = function() {
                return 'test';
-            };
-
-            this.onInit = function(){
-               spyObj.called();
             };
          }
 
          beforeEach(function() {
             registerTestService([Service]);
-
-            spyOn(spyObj, 'called');
          });
 
          var TestService;
@@ -57,10 +46,6 @@ define([
             expect(TestService).toBeDefined();
             expect(typeof TestService.testMethod).toEqual('function');
             expect(TestService.testMethod()).toEqual('test');
-         });
-
-         it('should call onInit after initialization', function () {
-            expect(spyObj.called).toHaveBeenCalled();
          });
       });
 
@@ -76,10 +61,6 @@ define([
             registerTestService(['dep1', 'dep2']);
          }
          expect(f).toThrow();
-      });
-
-      it('getRegistry() should return registry array', function () {
-         expect(ServiceFactory.getRegistry() instanceof Array).toBeTruthy();
       });
    });
 });

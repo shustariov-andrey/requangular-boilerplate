@@ -2,46 +2,59 @@ define([
    'module',
    'src/cmn/core/loggerfactory/module',
    'src/cmn/ngModule',
-   'lodash'
-], function(module, LoggerFactory, ngModule, _) {
+   'lodash',
+   'src/cmn/core/config/module'
+], function(module, LoggerFactory, ngModule, _, Config) {
    'use strict';
 
    var logger = LoggerFactory.getInstance(module.id),
 
-   augmenters = [],
-   augmentedServices = [],
-
-   trueFunc = function(){return true;};
+      servicesToAugmentersMap = {},
+      augmentersMap = {};
 
    ngModule.run(['$injector', function($injector) {
-      _.each(augmentedServices, function(augmented) {
-         var $delegate = $injector.get(augmented.serviceName);
-         _.each(augmenters, function(augmenter) {
-            if (augmenter.selector($delegate)) {
-               logger.trace('Augmenting service:', augmented.canonicalModuleId, 'with', augmenter.moduleName);
-               $delegate = augmenter.augmenter($delegate, augmented);
-            }
+      _.forIn(servicesToAugmentersMap, function(entry, key) {
+         var $delegate = $injector.get((Config.getConfig('NamePrefix') || '') + _.last(key.split('.')));
+         _.each(entry, function(augmenterId) {
+            logger.trace('Augmenting service:', key, 'with', augmenterId);
+            $delegate = augmentersMap[augmenterId]($delegate);
          });
       });
    }]);
 
-   return {
-      register: function (moduleName, augmenter, selector) {
+   /**
+    *
+    * @class ServiceFactoryAugmenterManager
+    */
+   var ServiceFactoryAugmenterManager = {
+      /**
+       *
+       * @param {string} moduleName
+       * @param {Function} augmenter
+       */
+      register: function (moduleName, augmenter) {
          if (typeof(augmenter) !== 'function') {
             throw new Error('Augmenter should be function');
          }
          var canonicalAugmenterId = moduleName.replace(/\//g, '.').replace(/^src\./, '');
          logger.trace('Registered augmenter:', canonicalAugmenterId);
-         augmenters.push({moduleName : canonicalAugmenterId, augmenter : augmenter, selector : selector ? selector : trueFunc});
-      },
-
-      addAugmented : function(serviceName) {
-         augmentedServices.push(serviceName);
+         augmentersMap[canonicalAugmenterId] = augmenter;
       },
 
       clean : function() {
-         augmenters = [];
-         augmentedServices = [];
+         servicesToAugmentersMap = {};
+         augmentersMap = {};
+      },
+
+      /**
+       *
+       * @param {string} canonicalModuleId
+       * @param {Array<string>} augmentersList
+       */
+      augmentService : function(canonicalModuleId, augmentersList) {
+         servicesToAugmentersMap[canonicalModuleId] = augmentersList;
       }
    };
+
+   return ServiceFactoryAugmenterManager;
 });

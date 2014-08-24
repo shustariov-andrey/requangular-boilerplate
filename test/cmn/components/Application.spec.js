@@ -4,7 +4,6 @@ define([
    'Squire'
 ], function(module, angular, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false, afterEach : false*/
 
    describe(module.id, function () {
 

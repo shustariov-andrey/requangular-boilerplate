@@ -1,8 +1,6 @@
 define(['module', 'Squire', 'angular-mocks'], function(module, Squire, angular) {
    'use strict';
 
-   /*global describe : false, beforeEach : false, inject : false, it : false, expect : false, afterEach : false*/
-
    describe(module.id, function () {
 
       var $rootScope, $compile,

@@ -1,12 +1,13 @@
 define([
    'src/cmn/core/config/module',
    './LogLevel',
+   './DefaultLogFormatter',
    './ConsoleLogWriter',
-   './DefaultLogFormatter'
-], function(Config, LogLevel, DefaultLogWriter, DefaultLogFormatter) {
+   './HttpLogWriter'
+], function(Config, LogLevel, DefaultLogFormatter, ConsoleLogWriter, HttpLogWriter) {
    'use strict';
 
-   var logWriter = DefaultLogWriter,
+   var logWriter = HttpLogWriter,
       logFormatter = DefaultLogFormatter,
       logLevel;
 
@@ -19,7 +20,7 @@ define([
          return logWriter.write(level, message);
       }
 
-      return level.value <= logLevel.value ? enhancedLogFn : function(){};
+      return (level.value <= logLevel.value && logLevel.key !== 'disabled') ? enhancedLogFn : function(){};
    }
 
    /**
@@ -54,9 +55,27 @@ define([
       logLevel = _logLevel;
    }
 
-   setLogLevel(Config.getConfig('Core.LogLevel') || 'TRACE');
+   function setLogWriter(_logWriter) {
+      switch (_logWriter) {
+         case 'Console':
+            logWriter = ConsoleLogWriter;
+            break;
+         case 'Http':
+            logWriter = HttpLogWriter;
+            break;
+         default :
+            throw new Error('Unknown Log Writer ' + _logWriter);
+      }
+   }
 
-   return {
+   setLogLevel(Config.getConfig('Core.LogLevel') || 'TRACE');
+   setLogWriter(Config.getConfig('Core.LogWriter') || 'Console');
+
+   /**
+    *
+    * @class LoggerFactory
+    */
+   var LoggerFactory = {
       getInstance : getInstance,
 
       setLogWriter : function(_logWriter) {
@@ -69,4 +88,6 @@ define([
          logFormatter = _logFormatter;
       }
    };
+
+   return LoggerFactory;
 });

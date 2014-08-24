@@ -3,7 +3,6 @@ define([
    'Squire'
 ], function(module, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, it : false, expect : false, afterEach : false*/
 
    describe(module.id, function () {
 

@@ -3,7 +3,6 @@ define([
    'Squire'
 ], function(module, Squire) {
    'use strict';
-   /*global describe : false, beforeEach : false, afterEach : false, it : false, expect : false*/
 
    describe(module.id, function() {
       var metaMessageRegex = '^\\d{2}:\\d{2}:\\d{2}:\\d{3}$', injector = new Squire('squire'), LogLevel, DefaultLogFormatter;
