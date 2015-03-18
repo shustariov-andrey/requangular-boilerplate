@@ -2,7 +2,7 @@ requirejs.config({
    baseUrl: '../',
    paths  : {
       angular            : 'bower_components/angular/angular',
-      lodash             : 'bower_components/lodash/dist/lodash',
+      lodash             : 'bower_components/lodash/lodash',
       'angular-ui-router': 'bower_components/angular-ui-router/release/angular-ui-router',
       domReady           : 'bower_components/requirejs-domready/domReady',
       text               : 'bower_components/requirejs-text/text',
